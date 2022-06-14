@@ -12,5 +12,12 @@ public class Exercise00a {
         this is how you do a block comment
         ...
          */
+
+        git help
+
+                git status
+                git add --all
+                git commit -m "..."
+
     }
 }
