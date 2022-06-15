@@ -13,11 +13,13 @@ public class Exercise00a {
         ...
          */
 
+        /*
         git help
 
                 git status
                 git add --all
                 git commit -m "..."
+         */
 
     }
 }
