@@ -5,5 +5,9 @@ public class Exercise03 {
         // 2. Assign a literal value to it: the number of states you've lived in.
         // 3. Print the results with System.out.println.
         // 4. Run it.
+        int stateLived = 1;
+        System.out.println("You've lived in " + stateLived + " state(s).");
+
+
     }
 }
