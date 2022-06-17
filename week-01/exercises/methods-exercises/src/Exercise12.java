@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Exercise12 {
 
     // 1. Create a method.
@@ -9,7 +11,12 @@ public class Exercise12 {
     //
     // See the readRequiredString implementation in the methods lesson.
     // You can definitely improve it. Make sure you don't allow blank input. Checking the length() is not enough.
-
+    public static string readRequiredString (String text) {
+        System.out.printf("Please enter string");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        if
+    }
     // 2. Create a method.
     // Name: printNounPhrase
     // Inputs: none

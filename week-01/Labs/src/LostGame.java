@@ -13,14 +13,11 @@ public class LostGame {
         boolean hasFirewood = false;
         boolean hasMatches = false;
         boolean foundBunker = false;
-
-        String code = "4815162342";
-
         boolean willExplode = true;
         int movesUntilExplosion = 6;
 
         Scanner console = new Scanner(System.in);
-        String command = null;
+        String command;
 
         System.out.println();
         System.out.println("Shoot, you got lost at sea and are stranded on a deserted island!");
