@@ -97,50 +97,38 @@ public class PodHotelApp {
         System.out.println("Pod-Viewer:");
         System.out.println("What pod would you like to view [#]?  ");
         int roomIndex = Integer.parseInt(console.nextLine()) - 1;
-        if (roomIndex >= 0 && roomIndex < pods.length) {
-            System.out.printf("Pod #" + (roomIndex + 1) + " is occupied by " + pods[roomIndex] + "%n%n");
-            if (pods.length >= 11) { //this loop makes sure that there isnt an error if there are less than 11 pods
-                //if the pod is in range that doesn't need to cycle over zero, print out the pods 5 below and 5 above as normal
-                if (roomIndex >= 6 && roomIndex < pods.length - 5) {
-                    for (int i = roomIndex - 5; i <= roomIndex + 5; i++) {
-                        System.out.printf("Pod #%s: %s%n",
-                                i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-                    }
-                    //if the pod is in range that needs to cycle over zero, print out the pods 5 below and 5 above in two parts
-                    //first print the pods that are toward the end of the array, and then the pods at the start of the array
-                } else if (roomIndex < 6) {
-                    int firstRoom = pods.length - (6 - (roomIndex + 1));
-                    for (int i = firstRoom; i < pods.length; i++) {
-                        System.out.printf("Pod #%s: %s%n",
-                                i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-                    }
-                    for (int i = 0; i <= roomIndex + 5; i++) {
-                        System.out.printf("Pod #%s: %s%n",
-                                i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-                    }
-                    //if the pod is in range that needs to cycle over zero, print out the pods 5 below and 5 above in two parts
-                    //first print the pods that are toward the end of the array, and then the pods at the start of the array
-                } else {
-                    int lastRoom = 6 - (pods.length - (roomIndex - 1));
-                    for (int i = roomIndex - 5; i < pods.length; i++) {
-                        System.out.printf("Pod #%s: %s%n",
-                                i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-                    }
-                    for (int i = 0; i <= lastRoom; i++) {
-                        System.out.printf("Pod #%s: %s%n",
-                                i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-
-                    }
-                }
-            } else { //if the number of pods is less than 11, print all of them
-                for (int i = 0; i < pods.length; i++) {
-                    System.out.printf("Pod #%s: %s%n",
-                            i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
-                }
+        System.out.printf("Pod #" + (roomIndex + 1) + " is occupied by " + pods[roomIndex] + "%n%n");
+        //if the pod is in range that doesn't need to cycle over zero, print out the pods 5 below and 5 above as normal
+        if (roomIndex >= 6 && roomIndex < pods.length - 5) {
+            for (int i = roomIndex - 5; i <= roomIndex + 5; i++) {
+                System.out.printf("Pod #%s: %s%n",
+                        i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
             }
+        //if the pod is in range that needs to cycle over zero, print out the pods 5 below and 5 above in two parts
+        //first print the pods that are toward the end of the array, and then the pods at the start of the array
+        } else if (roomIndex < 6) {
+            int firstRoom = pods.length - (6 - (roomIndex + 1));
+            for (int i = firstRoom; i < pods.length; i++) {
+                System.out.printf("Pod #%s: %s%n",
+                        i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
+            }
+            for (int i = 0; i <= roomIndex + 5; i++) {
+                System.out.printf("Pod #%s: %s%n",
+                        i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
+            }
+        //if the pod is in range that needs to cycle over zero, print out the pods 5 below and 5 above in two parts
+        //first print the pods that are toward the end of the array, and then the pods at the start of the array
         } else {
-            System.out.println("That is not a valid pod number.");
-            return;
+            int lastRoom = 6 - (pods.length - (roomIndex - 1));
+            for (int i = roomIndex - 5; i < pods.length; i++) {
+                System.out.printf("Pod #%s: %s%n",
+                        i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
+            }
+            for (int i = 0; i <= lastRoom; i++) {
+                System.out.printf("Pod #%s: %s%n",
+                        i + 1, pods[i] == null ? "-[Vacant]-" : pods[i]);
+
+            }
         }
     }
 }

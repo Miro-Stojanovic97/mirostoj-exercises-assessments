@@ -37,7 +37,7 @@ Project Outline:
         define method for displaying checkin/checkout results
                  if check-out && filled  ->  success prompt.
                  if check-out && empty  ->  fail prompt
-                                                                        if check-in && filled  ->  fail prompt
+                 if check-in && filled  ->  fail prompt
                  if check-in && empty  ->  success prompty
 
         define method for displaying rooms, containing the rooms array
