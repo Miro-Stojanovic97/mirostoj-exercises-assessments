@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class PodHotelApp {
 
     public static void main(String[] args) {
+        /* Loved the personalization * 
         String line = "------------------------------------------------------------"; //console formatting line
         System.out.println(line);
         System.out.println("Welcome to PodManager, by MiroDev, LLC. ;)"); //Intro to App
