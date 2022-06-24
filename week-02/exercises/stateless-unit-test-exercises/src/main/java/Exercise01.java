@@ -7,27 +7,31 @@ public class Exercise01 {
     // Parameters are operands that should be applied in order.
     // For example: a + b, not b + a.
 
-    // 1. Open Exercise01Test in src/test/java and run all tests.
-    // 2. Complete the add and subtract methods and make all tests pass.
+    // [DONE] 1. Open Exercise01Test in src/test/java and run all tests.
+    // [DONE] 2. Complete the add and subtract methods and make all tests pass.
 
     static int add(int a, int b) {
-        return 0;
+        int sum = a + b;
+        return sum;
     }
 
     static int subtract(int a, int b) {
-        return 0;
+        int diff = a - b;
+        return diff;
     }
 
-    // 3. Add tests for multiply and divide in Exercise01Test.
+    // [DONE] 3. Add tests for multiply and divide in Exercise01Test.
     // Provide at least 6 test cases.
-    // 4. Run all tests.
-    // 5. Complete the multiply and divide methods and make all tests pass.
+    // [DONE] 4. Run all tests.
+    // [DONE] 5. Complete the multiply and divide methods and make all tests pass.
 
     static int multiply(int a, int b) {
-        return 0;
+        int prod = a * b;
+        return prod;
     }
 
     static int divide(int a, int b) {
-        return 0;
+        int div = a / b;
+        return div;
     }
 }
