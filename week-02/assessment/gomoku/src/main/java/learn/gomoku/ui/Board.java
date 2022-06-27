@@ -6,11 +6,11 @@ import learn.gomoku.game.Stone;
 import java.util.List;
 
 public class Board {
-    public final int width;
+    public final int width; //initialize variables
     public char[][] board;
 
     public Board(int width) {
-        //create new board filled with default character
+        //create new board filled with default character '_'
         this.width = width;
         board = new char[width][width];
         for (int row = 0; row < width; row++) {
@@ -20,6 +20,7 @@ public class Board {
         }
     }
 
+    //Populate board behind the scenes, replace '_' char's with the 'B' and 'W' as they are called.
     public void populateBoard(List<Stone> stones) {
         for (int row = 0; row < width; row ++) {
             for (int col = 0; col < width; col++) {
@@ -38,6 +39,8 @@ public class Board {
         }
     }
 
+    //Print the board to the user, printing the updated board[][] values from populateBoard()
+    //Keeping separate from populateBoard to enhance Single Responsibility Principle aspect of the methods
     public void printBoard() {
         //prints column coordinates
         for (int i = 0; i <= width; i++) {
@@ -54,5 +57,4 @@ public class Board {
             System.out.println(); //starts each new row
         }
     }
-
 }

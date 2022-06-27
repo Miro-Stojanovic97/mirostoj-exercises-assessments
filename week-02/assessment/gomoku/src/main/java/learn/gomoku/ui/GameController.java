@@ -16,12 +16,12 @@ public class GameController {
     Player player1; //initiate player variables
     Player player2;
     boolean isActive;
-    String line1 = "-------------------------------------------";
+    String line1 = "-------------------------------------------"; //UI formatting lines
     String line2 = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 
     void run()      {
-        int resultCounter = 0;
-        isActive = true;
+        int resultCounter = 0; //intializing variable that later gets used to prompt game exit option if >3 incorrect inputs are given
+        isActive = true; //initializing variable
         // only run while game is active
         while (isActive) {
             //setup game
