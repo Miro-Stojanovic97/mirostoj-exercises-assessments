@@ -1,3 +1,4 @@
+//import jdk.swing.interop.SwingInterOpUtils;
 import learn.Vehicle;
 import learn.VehicleRepository;
 
@@ -14,5 +15,18 @@ public class Exercise08 {
         // (You may want to use your print all method from Exercise03.)
         // 4. How many 2006 vehicles are there? (Expected: 50)
 
+            HashMap<String, Vehicle> twoThousandSix = new HashMap<>();
+
+            //enhanced for loop
+            for(Vehicle mm : vehicleMap.values()) {
+                if (mm.getYear() == 2006) {
+                    twoThousandSix.put(mm.getVin(), mm);
+                }
+            }
+
+            for (Vehicle mm : twoThousandSix.values()) {
+                System.out.println(mm);
+            }
+        System.out.printf("Count of 2006 Vehicles: %s", twoThousandSix.size());
     }
 }

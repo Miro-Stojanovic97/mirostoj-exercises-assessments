@@ -7,50 +7,50 @@ import java.util.List;
 
 public class Gomoku {
 
-    public static final int WIDTH = 15;
+    public static final int WIDTH = 15; //makes board width
 
-    private final Player playerOne;
-    private final Player playerTwo;
-    private final char[][] board = new char[WIDTH][WIDTH];
+    private final Player playerOne; //makes player1 variable w player class
+    private final Player playerTwo; //makes player2 variable w player class
+    private final char[][] board = new char[WIDTH][WIDTH]; //board dimensions
 
-    private ArrayList<Stone> stones = new ArrayList<>();
-    private boolean over;
+    private ArrayList<Stone> stones = new ArrayList<>(); //stones array list
+    private boolean over; //initiates over statement for ending game
     private Player current;
     private Player winner;
     private boolean blacksTurn = true;
 
     public List<Stone> getStones() {
         return new ArrayList<>(stones);
-    }
+    } //getStones method
 
     public boolean isOver() {
         return over;
-    }
+    } //isOver method
 
     public Player getCurrent() {
         return current;
-    }
+    } //getCurrent method
 
     public Player getWinner() {
         return winner;
-    }
+    } //getWinner method
 
     public boolean isBlacksTurn() {
         return blacksTurn;
-    }
+    } //isBlackTurn method
 
-    public Gomoku(Player playerOne, Player playerTwo) {
+    public Gomoku(Player playerOne, Player playerTwo) { //decides who goes first
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
 
-        if (Math.random() < 0.5) {
+        if (Math.random() < 0.5) { //random # between 0 and 1
             current = playerOne;
         } else {
             current = playerTwo;
         }
     }
 
-    public Result place(Stone stone) {
+    public Result place(Stone stone) {  //Result class, place method
 
         if (isOver()) {
             return new Result("Game is over.");
