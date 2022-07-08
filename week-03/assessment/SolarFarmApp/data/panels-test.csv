@@ -1,0 +1,10 @@
+id,section,row,col,material,year,tracking
+1,Front,1,1,POLYSI,2022,true
+2,Front,2,2,POLYSI,2022,true
+3,Front,3,3,MONOSI,2022,true
+4,Roof,1,1,MONOSI,2022,true
+5,Roof,3,3,CDTE,2022,true
+6,Roof,4,4,CDTE,2022,true
+7,Back,1,1,CDTE,2022,true
+8,Back,1,2,CIGS,2022,true
+9,Back,1,3,CIGS,2022,true
