@@ -12,15 +12,15 @@ public class Main {
 
         // 0. Print all students
         // iteration solution
-        for (Student student : students) {
+        /*for (Student student : students) {
             System.out.println(student);
-        }
+        }*/
 
         // stream solution
-        students.stream().forEach(System.out::println);
+        //students.stream().forEach(System.out::println);
 
         // 1. Print students from Argentina
-
+        students.stream().filter(students.getCountry().equalsIgnoreCase("Argentina").forEach(System.out::println));
         // 2. Print students whose last names starts with 'T'.
 
         // 3. Print students from Argentina, ordered by GPA

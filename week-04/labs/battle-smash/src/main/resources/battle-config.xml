@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Define "beans" here.
+    A bean definition registers an instance of a data type with the DI container.
+    -->
+
+    <bean id="announcer" class="learn.battle.announcers.ProperAnnouncer"/>
+
+    <bean id="location" class="learn.battle.environment.Location">
+        <constructor-arg value="Dev10 Arena"/>
+    </bean>
+
+    <bean id="Adel" class="learn.battle.fighters.Fighter">
+        <constructor-arg value="Adel"/>
+    </bean>
+
+    <bean class="learn.battle.environment.Battle">
+        <constructor-arg ref="location"/>
+        <constructor-arg>
+            <list>
+                <ref bean="Adel"/>
+                <bean class="learn.battle.fighters.Fighter">
+                    <constructor-arg value="Dex"/>
+                </bean>
+                <bean class="learn.battle.fighters.Fighter">
+                    <constructor-arg value="Miro"/>
+                </bean>
+                <bean class="learn.battle.fighters.Fighter">
+                    <constructor-arg value="Rakiyah"/>
+                </bean>
+            </list>
+        </constructor-arg>
+        <property name="announcer" ref="announcer"/>
+    </bean>
+</beans>
