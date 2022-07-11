@@ -24,6 +24,12 @@ public class ForagerRepositoryDouble implements ForagerRepository {
                 .orElse(null);
     }
 
+    //add forager
+    @Override
+    public Forager add(Forager forager) throws DataException {
+        return null;
+    }
+
     @Override
     public List<Forager> findAll() {
         return foragers;

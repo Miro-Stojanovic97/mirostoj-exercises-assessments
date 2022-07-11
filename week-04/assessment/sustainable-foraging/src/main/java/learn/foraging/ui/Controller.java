@@ -9,10 +9,12 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Component
 public class Controller {
 
     private final ForagerService foragerService;
@@ -20,6 +22,7 @@ public class Controller {
     private final ItemService itemService;
     private final View view;
 
+    //Controller constructor
     public Controller(ForagerService foragerService, ForageService forageService, ItemService itemService, View view) {
         this.foragerService = foragerService;
         this.forageService = forageService;
@@ -34,6 +37,7 @@ public class Controller {
         } catch (DataException ex) {
             view.displayException(ex);
         }
+        //Exit app once runAppLoop() is exited
         view.displayHeader("Goodbye.");
     }
 
@@ -48,23 +52,23 @@ public class Controller {
                 case VIEW_ITEMS:
                     viewItems();
                     break;
+                case VIEW_FORAGERS:
+                    viewForagers();
+                    break;
                 case ADD_FORAGE:
                     addForage();
                     break;
                 case ADD_FORAGER:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    addForager();
                     break;
                 case ADD_ITEM:
                     addItem();
                     break;
                 case REPORT_KG_PER_ITEM:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportKgPerItem();
                     break;
                 case REPORT_CATEGORY_VALUE:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportCategoryValue();
                     break;
                 case GENERATE:
                     generate();
@@ -140,5 +144,42 @@ public class Controller {
         Category category = view.getItemCategory();
         List<Item> items = itemService.findByCategory(category);
         return view.chooseItem(items);
+    }
+
+    //additional methods
+
+    private void viewForagers() {
+        view.displayHeader(MainMenuOption.VIEW_FORAGERS.getMessage());
+        List<Forager> foragers = foragerService.findAll();
+        view.displayHeader("Foragers");
+        view.displayForagers(foragers);
+        view.enterToContinue();
+    }
+
+    private void addForager() throws DataException {
+        view.displayHeader(MainMenuOption.ADD_FORAGER.getMessage());
+        Forager forager = view.makeForager();
+        Result<Forager> result = foragerService.add(forager);
+        if (!result.isSuccess()) {
+            view.displayStatus(false, result.getErrorMessages());
+        } else {
+            String successMessage = String.format("Forager %s was successfully created.",
+                    result.getPayload().getId());
+            view.displayStatus(true, successMessage);
+        }
+    }
+
+    private void reportCategoryValue() {
+        view.displayHeader(MainMenuOption.REPORT_CATEGORY_VALUE.getMessage());
+        List<Forage> foragesOnDate = forageService.findByDate(view.getForageDate());
+        view.displayReport(forageService.categoryValue(foragesOnDate), "$");
+        view.enterToContinue();
+    }
+
+    private void reportKgPerItem() {
+        view.displayHeader(MainMenuOption.REPORT_KG_PER_ITEM.getMessage());
+        List<Forage> foragesOnDate = forageService.findByDate(view.getForageDate());
+        view.displayReport(forageService.itemKg(foragesOnDate), "kg");
+        view.enterToContinue();
     }
 }

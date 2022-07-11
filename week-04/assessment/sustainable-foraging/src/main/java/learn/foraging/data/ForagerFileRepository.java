@@ -2,19 +2,23 @@ package learn.foraging.data;
 
 import learn.foraging.models.Forager;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOError;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
+import javax.xml.crypto.Data;
+
+@Repository
 public class ForagerFileRepository implements ForagerRepository {
 
     private final String filePath;
-
-    public ForagerFileRepository(String filePath) {
+    private static final String HEADER = "id,first_name,last_name,state";
+    private static final String DELIMITER = ",";
+    private static final String CONVERTED = "*";
+    public ForagerFileRepository(@Value("${foragerFilePath}") String filePath) {
         this.filePath = filePath;
     }
 
@@ -47,6 +51,15 @@ public class ForagerFileRepository implements ForagerRepository {
     }
 
     @Override
+    public Forager add(Forager forager) throws DataException {
+        List<Forager> all = findAll();
+        forager.setId(java.util.UUID.randomUUID().toString());
+        all.add(forager);
+        writeAll(all);
+        return forager;
+    }
+
+    @Override
     public List<Forager> findByState(String stateAbbr) {
         return findAll().stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
@@ -56,9 +69,31 @@ public class ForagerFileRepository implements ForagerRepository {
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
         result.setId(fields[0]);
-        result.setFirstName(fields[1]);
-        result.setLastName(fields[2]);
-        result.setState(fields[3]);
+        result.setFirstName(fields[1].replace(CONVERTED, DELIMITER));
+        result.setLastName(fields[2].replace(CONVERTED, DELIMITER));
+        result.setState(fields[3].replace(CONVERTED, DELIMITER));
         return result;
+    }
+
+    private String serialize(Forager forager) {
+        return String.format("%s, %s, %s, %s",
+                forager.getId(),
+                forager.getFirstName().replace(DELIMITER, CONVERTED),
+                forager.getLastName().replace(DELIMITER, CONVERTED),
+                forager.getState().replace(DELIMITER, CONVERTED));
+    }
+
+    protected void writeAll(List<Forager> foragers) throws DataException {
+        try (PrintWriter writer = new PrintWriter(filePath)) {
+            writer.println(HEADER);
+            if (foragers == null) {
+                return;
+            }
+            for (Forager f : foragers) {
+                writer.println(serialize(f));
+            }
+        } catch (FileNotFoundException ex) {
+            throw new DataException(ex);
+        }
     }
 }

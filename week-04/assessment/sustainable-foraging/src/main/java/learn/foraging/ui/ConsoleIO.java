@@ -5,9 +5,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsoleIO {
 
+    //instantiates error readout strings for methods below
     private static final String INVALID_NUMBER
             = "[INVALID] Enter a valid number.";
     private static final String NUMBER_OUT_OF_RANGE
@@ -17,9 +20,13 @@ public class ConsoleIO {
     private static final String INVALID_DATE
             = "[INVALID] Enter a date in MM/dd/yyyy format.";
 
+    //instantiates scanner for console IO
     private final Scanner scanner = new Scanner(System.in);
+
+    //Instantiates DateTime formatter with pattern of mm/dd/yyyy
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
+    //Methods for printing result messages
     public void print(String message) {
         System.out.print(message);
     }
@@ -32,11 +39,14 @@ public class ConsoleIO {
         System.out.printf(format, values);
     }
 
+    //Method for reading string
     public String readString(String prompt) {
         print(prompt);
         return scanner.nextLine();
     }
 
+    //Method for reading string
+    //If blank -> "[INVALID] Value is required."
     public String readRequiredString(String prompt) {
         while (true) {
             String result = readString(prompt);
@@ -47,6 +57,8 @@ public class ConsoleIO {
         }
     }
 
+    //Method for reading string
+    //If blank -> "[INVALID] Value is required."
     public double readDouble(String prompt) {
         while (true) {
             try {

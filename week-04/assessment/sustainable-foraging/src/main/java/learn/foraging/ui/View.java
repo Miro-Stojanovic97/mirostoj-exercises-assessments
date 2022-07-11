@@ -4,12 +4,15 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class View {
 
     private final ConsoleIO io;
@@ -18,6 +21,7 @@ public class View {
         this.io = io;
     }
 
+    //prints out main menu options to be selected by user
     public MainMenuOption selectMainMenuOption() {
         displayHeader("Main Menu");
         int min = Integer.MAX_VALUE;
@@ -34,6 +38,7 @@ public class View {
         return MainMenuOption.fromValue(io.readInt(message, min, max));
     }
 
+    //Brings up "View Forages by Date" header, followed by prompt
     public LocalDate getForageDate() {
         displayHeader(MainMenuOption.VIEW_FORAGES_BY_DATE.getMessage());
         return io.readLocalDate("Select a date [MM/dd/yyyy]: ");
@@ -119,6 +124,15 @@ public class View {
         return item;
     }
 
+    //Make a Forager
+    public Forager makeForager() {
+        Forager forager = new Forager();
+        forager.setFirstName(io.readRequiredString("Please enter first name:"));
+        forager.setLastName(io.readRequiredString("Please enter last name:"));
+        forager.setState(io.readRequiredString("Please enter forager state: "));
+        return forager;
+    }
+
     public GenerateRequest getGenerateRequest() {
         displayHeader(MainMenuOption.GENERATE.getMessage());
         LocalDate start = io.readLocalDate("Select a start date [MM/dd/yyyy]: ");
@@ -193,4 +207,40 @@ public class View {
             io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
         }
     }
+
+    //Display foragers
+    public void displayForagers(List<Forager> foragers) {
+        if (foragers.size() == 0) {
+            io.println("There have not been any foragers recorded yet");
+        }
+
+        String format = "%-15s%-15s%-10s%n";
+        io.printf(format, "First Name", "Last Name", "State");
+
+        for (Forager f : foragers) {
+            io.printf(format, f.getFirstName(), f.getLastName(), f.getState());
+        }
+    }
+
+    //Display report
+    public void displayReport(Map items, String unit) {
+        if (unit.equalsIgnoreCase("$")) {
+            String headerFormat = "%n%-15.15s%-3s%-9.3s%n";
+            String format = "%-15.15s%3s%-9.3f%n";
+            String header = String.format(headerFormat, "Item", unit, "Sum");
+            io.print(header);
+            io.println("-".repeat(header.length()));
+            items.forEach((item, sum) -> io.printf(format, item, unit, sum));
+        } else {
+            String headerFormat = "%n%-15.15s%9.3s%-3s%n";
+            String format = "%-15.15s%9.3f%3s%n";
+            String header = String.format(headerFormat, "Item", "Sum", unit);
+            io.print(header);
+            io.println("-".repeat(header.length()));
+            items.forEach((item, sum) -> io.printf(format, item, sum, unit));
+        }
+    }
+
+
+
 }
