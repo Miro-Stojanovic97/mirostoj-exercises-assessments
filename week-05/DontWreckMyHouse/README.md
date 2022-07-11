@@ -1,14 +1,21 @@
 # Don't Wreck My House
 A **Multi-Layer Application** that allows a user to reserve rooms for guests with a specified host. 
 
-## Technical Requirements:
-- a
-- b
-- c
-- d
-- e
+## Application Requirements:
+- Application user is an accommodation admin, pairing guests to host's to make reservations
+- Admin may _**view existing reservations**_ for a host
+- Admin _**create a reservation for a guest**_ w a host
+- Admin may _**edit existing reservations**_
+- Admin may _**cancel future reservations**_
 
-## "User Stories":
+### Glossary:
+- _**Guest**_: Customer that wants to book a stay (Guest data is provided)
+- **_Host_**: Accommodation provider (Host data is provided)
+- _**Location:**_ A rental property (one location per 1 host)
+- _**Reservation:**_ Day(s) where a Guest has exclusive rights to the Location / Host. 
+- _**Admin:**_ The app user. Guests and Hosts don't book their own reservations, the admin does.
+
+### "User Stories":
 - a
 - b
 - c
