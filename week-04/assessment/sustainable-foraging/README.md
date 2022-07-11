@@ -48,3 +48,7 @@ Add feature if it isn't functioning yet.
   - Time Estimate: 0.75-hr
 - [X] Add Spring dependency injection 
   - Time Estimate: 1-hr
+
+### See Planning Diagram "Excalidraw Diagram.png"
+- Diagram was made to help visualize the different layers of the program
+- I now know there are ways to generate that kind of diagram automatically, which I will be doing from now on.
