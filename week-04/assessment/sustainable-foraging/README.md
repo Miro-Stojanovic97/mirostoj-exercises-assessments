@@ -18,29 +18,33 @@ Add feature if it isn't functioning yet.
     - FUNCTIONING
     - All categories show Item, Class, Value
     - Time Estimate: 0-hrs
-- [ ] 3.)Add a Forage
+- [X] 3.)Add a Forage
     - FUNCTIONING
     - Name validation working, must be in Forager database
     - Using 06-30-2022 forage, duplicate forage accepted
     - TODO: Stop duplicates (Date + Item + Forager)
     - Time Estimate: 0.5-hrs
-- [ ] 4.)Add a Forager
+- [X] 4.)Add a Forager
     - NOT FUNCTIONING
     - TODO: Implement adding a forager
     - Time Estimate: 1-hr
-- [ ] 5.)Add an Item
+- [X] 5.)Add an Item
     - FUNCTIONING
     - Item "Coffee Bean" successfully added to items.txt
-    - 
-- [ ] 6.)Report: Kg of Item
+    - Time Estimate: 0-hr
+- [X] 6.)Report: Kg of Item
     - NOT FUNCTIONING
     - Reads "Error: Not implemented"
-- [ ] 7.)Report: Item Category Value
+    - TODO: Implement Report
+    - Time Estimate: 1-hr
+- [X] 7.)Report: Item Category Value
     - Reads "Error: Not implemented"
+    - TODO: Implement Report
+    - Time Estimate: 0.5-hr
 
 ### Other tasks
-- [ ] View Forages - NOT FUNCTIONING 
+- [X] View Forages - NOT FUNCTIONING 
   - TODO: Implement View Forages menu option
   - Time Estimate: 0.75-hr
-- [ ] Add Spring dependency injection 
+- [X] Add Spring dependency injection 
   - Time Estimate: 1-hr
