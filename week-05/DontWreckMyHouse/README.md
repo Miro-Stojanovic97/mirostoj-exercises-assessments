@@ -65,9 +65,100 @@ A **Multi-Layer Application** that allows a user to reserve rooms for guests wit
 ## Application Planning:
 Convert these eventually to the gantt chart below
 - Configure POM.xml --> 0.2-hrs 
+- Create packages and initial classes/enums/interfaces
+  - App, UI and Models --> 1-hrs
+
+<!-- Class Diagram / Charting of the Application Development Project-->
+### *Class Diagram*
+```plantuml
+@startuml
+skinparam linetype poly
+
+MODELS.Reservation -- UI.Controller
+UI.Controller -- DOMAIN.ReservationService
+UI.Controller -- DOMAIN.HostService
+UI.Controller -- DOMAIN.GuestService
+DOMAIN.ReservationService --- DATA.ReservationRepository
+DOMAIN.HostService --- DATA.HostRepository
+DOMAIN.GuestService --- DATA.GuestRepository
+
+package "MODELS" {
+Host - Reservation 
+Reservation - Guest
+    class Guest {
+    tbd
+    }
+    class Host {
+    tbd
+    }
+    class Reservation {
+    tbd
+    }
+}
+package "UI" {
+Controller - View
+View - ConsoleIO
+MenuOption - Controller
+    class ConsoleIO {
+    tbd
+    }
+    class Controller {
+    - ReservationService reservationService
+    - HostService hostService 
+    - GuestService guestService
+    - View view
+    tbd
+    }
+    enum MenuOption {
+    tbd
+    }
+    class View {
+    tbd
+    }
+}
+package "DOMAIN" {
+    class GuestService {
+    tbd
+    }
+    class HostService {
+    tbd
+    }
+    class ReservationService {
+    tbd
+    }
+    class Result {
+    tbd
+    }  
+}
+package "DATA" {
+    class DataAccessException {
+    tbd
+    }
+    class GuestFileRepository {
+    tbd
+    }
+    interface GuestRepository {
+    tbd
+    }
+    class HostFileRepository {
+    tbd
+    }
+    interface HostRepository {
+    tbd
+    }
+    class ReservationFileRepository {
+    tbd
+    }
+    interface ReservationRepository {
+    tbd
+    }
+}
+
+@enduml
+```
 
 <!-- Work Breakdown Structure of the Application Development Project-->
-### Work Breakdown
+### *Work Breakdown*
 ```plantuml
 @startwbs
 <style>
@@ -89,6 +180,7 @@ MaximumWidth 300
 ```
 
 <!-- Gantt Charting the Application Development Project -->
+### *Gantt Chart*
 ```plantuml
 @startgantt
 title Work Breakdown - Hours
