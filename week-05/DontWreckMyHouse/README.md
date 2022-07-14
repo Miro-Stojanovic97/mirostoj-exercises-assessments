@@ -64,9 +64,11 @@ A **Multi-Layer Application** that allows a user to reserve rooms for guests wit
 
 ## Application Planning:
 Convert these eventually to the gantt chart below
-- Configure POM.xml --> 0.2-hrs 
+- Configure POM.xml --> 0.5-hrs 
 - Create packages and initial classes/enums/interfaces
   - App, UI and Models --> 1-hrs
+  - Data and domain layer --> 1-hr
+- Fully create models --> 2hrs
 
 <!-- Class Diagram / Charting of the Application Development Project-->
 ### *Class Diagram*
@@ -131,6 +133,10 @@ package "DOMAIN" {
     }  
 }
 package "DATA" {
+    GuestRepository .. GuestFileRepository
+    HostRepository .. HostFileRepository
+    ReservationRepository .. ReservationFileRepository
+    
     class DataAccessException {
     tbd
     }
@@ -168,11 +174,13 @@ MaximumWidth 300
 </style>
 * Don't Wreck My House*
 ** 1 Front End
-*** 1.1 Front End 1 [xx-hrs]
-*** 1.2 Front End 2 [xx-hrs]
-*** 1.3 Front End 3 [xx-hrs]
+*** 1.1 Create App, Controller, MenuOptions, View, and ConsoleIO classes/enum [2-hrs]
+*** 1.2 Create UI methods/logic [6-hrs]
+**** 1.2.1 Create ConsoleIO Methods [2-hrs]
+**** 1.2.2 Create Controller Methods [2-hrs]
+**** 1.2.3 Create View Methods [2-hrs]
 ** 2 Back End
-*** 2.1 Back End 1 [xx-hrs]
+*** 2.1 Create Guest, Host, and Reservation models [2-hrs]
 **** 2.1.1 Configure POM.xml [0.2-hrs]
 *** 2.2 Back End 2 [xx-hrs]
 *** 2.3 Back End 3 [xx-hrs]
@@ -204,15 +212,12 @@ title Work Breakdown - Hours
         [1.3] is colored in silver/black
         [1.3] is 40% completed
     
-[Back End] starts at [1.3]'s end and lasts 12 days
+[Back End] starts at [1.1]'s end and lasts 12 days
 [Back End] is colored in lightgreen/green
 [Back End] is 40% completed
-    [2.1] starts at [Back End]'s start and lasts 4 days
+    [2.1] starts at [Back End]'s start and lasts 2 days
         [2.1] is colored in silver/black
-        [2.1] is 40% complete
-        [2.1.1] starts at [2.1]'s start and lasts 1 days
-        [2.1.1] is colored in silver/black
-        [2.1.1] is 100% complete
+        [2.1] is 50% complete
     [2.2] starts at [2.1]'s end and lasts 4 days
         [2.2] is colored in silver/black
         [2.2] is 40% complete

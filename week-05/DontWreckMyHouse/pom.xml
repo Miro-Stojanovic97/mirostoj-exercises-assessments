@@ -17,17 +17,25 @@
         <dependency>
             <!-- Spring Framework -->
             <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>5.2.7.RELEASE</version>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.20</version>
         </dependency>
 
         <dependency>
             <!-- J-Unit Testing Framework -->
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.6.2</version>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.7</version>
+        </dependency>
+
     </dependencies>
 
 </project>
