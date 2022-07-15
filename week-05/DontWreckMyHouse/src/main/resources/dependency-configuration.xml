@@ -5,5 +5,21 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+    <!-- IO -->
+    <bean id="io" class="learn.house.ui.ConsoleIO"/>
+
+    <!-- View -->
+    <bean id="view" class="learn.house.ui.View">
+        <constructor-arg ref="io"/>
+    </bean>
+
+    <!-- Controller -->
+    <bean class="learn.house.ui.Controller">
+        <constructor-arg ref="guestService"/>
+        <constructor-arg ref="hostService"/>
+        <constructor-arg ref="reservationService"/>
+        <constructor-arg ref="view"/>
+    </bean>
+
 
 </beans>

@@ -3,12 +3,15 @@
 
 package learn.house.ui;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+@Component
 public class ConsoleIO {
 
     private static final String INVALID_NUMBER
@@ -36,11 +39,13 @@ public class ConsoleIO {
         System.out.printf(format, values);
     }
 
+        //---print message, then scan and return next line from user
     public String readString(String prompt) {
         print(prompt);
         return scanner.nextLine();
     }
 
+        //---pass message to readString, prompt REQUIRED if there's no user input
     public String readRequiredString(String prompt) {
         while (true) {
             String result = readString(prompt);
@@ -71,6 +76,7 @@ public class ConsoleIO {
         }
     }
 
+        //pass through to readString methods, prompt INVALID_NUMBER if not valid Int, or REQUIRED if no input
     public int readInt(String prompt) {
         while (true) {
             try {
@@ -80,7 +86,7 @@ public class ConsoleIO {
             }
         }
     }
-
+        //pass to readInt, prompt OUT_OF_RANGE if out of allowable range
     public int readInt(String prompt, int min, int max) {
         while (true) {
             int result = readInt(prompt);

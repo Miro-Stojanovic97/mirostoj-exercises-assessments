@@ -10,7 +10,7 @@ public enum MenuOption {
     VIEW_RESERVATION(1, "View Reservations"),
     MAKE_RESERVATION(2, "Make Reservations"),
     EDIT_RESERVATION(3, "Edit Reservations"),
-    DELETE_RESERVATION(4, "Delete Reservations");
+    CANCEL_RESERVATION(4, "Cancel Reservations");
         //---Additional options to be added later for stretch goals---
             //Create/Edit/Delete guests
             //Create/Edit/Delete Hosts
