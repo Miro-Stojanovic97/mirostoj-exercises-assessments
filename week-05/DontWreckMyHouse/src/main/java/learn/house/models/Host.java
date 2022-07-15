@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Host {
 
         //---Host class constructor fields---
-    private int hostId;
+    private String hostId;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,7 +20,7 @@ public class Host {
     private BigDecimal weekendRate;
 
         //---Constructor representing an existing Host
-    public Host(int hostId, String firstName, String lastName, String email, String phone, String address, String city, String state, BigDecimal standardRate, BigDecimal weekendRate) {
+    public Host(String hostId, String firstName, String lastName, String email, String phone, String address, String city, String state, BigDecimal standardRate, BigDecimal weekendRate) {
         this.hostId = hostId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,8 +38,8 @@ public class Host {
     }
 
         //---Getters and Setters for Host---
-    public int getHostId() { return hostId; }
-    public void setHostId(int hostId) { this.hostId = hostId; }
+    public String getHostId() { return hostId; }
+    public void setHostId(String hostId) { this.hostId = hostId; }
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }

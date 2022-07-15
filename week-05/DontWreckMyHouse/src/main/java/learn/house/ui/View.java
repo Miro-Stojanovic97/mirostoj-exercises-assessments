@@ -3,10 +3,13 @@
 
 package learn.house.ui;
 
+import learn.house.models.Guest;
+import learn.house.models.Host;
 import learn.house.models.Reservation;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 import java.util.List;
-import java.awt.*;
 
 @Component
 public class View {
@@ -23,22 +26,47 @@ public class View {
         int minOption = 0;
         int maxOption = MenuOption.values().length - 1;
 
+        Controller.sleep(350);
+
             //---print menu options to user (option number and message)
         for (MenuOption o : MenuOption.values()) {
-            io.printf("%s.)  %s%n", o.getNumber(), o.getMessage());
+            io.printf(" %s.)  %s%n", o.getNumber(), o.getMessage());
         }
+
+        System.out.println();
 
             //---prompt user to choose option
         String message = String.format("Choose an option [%s - %s]:  ", minOption, maxOption);
 
             //---return menu option from value. Validate input in ConsoleIO: confirm in-range, confirm int, confirm input
         return MenuOption.fromValue(io.readInt(message, minOption, maxOption));
+
     }
 
     public void printTitle(String message) {
-            //---console title formatting
-        String openingTitle = "\uD83C\uDFE0" + message + "\uD83C\uDFE0";
-        io.println("\n".repeat(10) + "╭" + "━".repeat(openingTitle.length() - 1) + "╮");
+        for(int t = 0; t < 12; t++) {
+            if(t<9) {
+                System.out.println(" ".repeat(t) + "🏠");
+                Controller.sleep(105);
+            } else {
+                System.out.println(" ".repeat(8) + "🏠");
+                Controller.sleep(150);
+            }
+        }
+        //---console title formatting
+        String openingTitle = " 🏠 " + message + " 🏠 ";
+
+        io.println("╭" + "━".repeat(openingTitle.length() - 1) + "╮");
+        io.println("│" + openingTitle + "│");
+        io.println("╰" + "━".repeat(openingTitle.length() - 1) + "╯");
+
+    }
+
+    public void printMainTitle(String message) {
+        //---console title formatting
+        String openingTitle = " 🏠 " + message + " 🏠 ";
+
+        io.println("╭" + "━".repeat(openingTitle.length() - 1) + "╮");
         io.println("│" + openingTitle + "│");
         io.println("╰" + "━".repeat(openingTitle.length() - 1) + "╯");
     }
@@ -61,9 +89,111 @@ public class View {
 
     public void displayReservations(List<Reservation> reservations) {
         if (reservations == null || reservations.isEmpty()) {
-            io.println("No reservations were found.");
+            io.println("No reservations found.");
             return;
         }
+
+        displayHostAndLocation(reservations.get(0).getHost());
+
+        String format = "%-4s%-13s%-13s%-15s%-15s%-25s";
+        String header = String.format(format, "ID", "Date In", "Date Out", "First Name", "Last Name", "Email");
+        io.println(header);
+        io.println("-".repeat(header.length()));
+
+        for (Reservation r : reservations) {
+            io.printf(format,
+                    r.getReservationId(),
+                    r.getStartDate().toString(),
+                    r.getEndDate().toString(),
+                    r.getGuest().getFirstName(),
+                    r.getGuest().getLastName(),
+                    r.getGuest().getEmail()
+            );
+            io.print("\n");
+        }
+        io.print("\n");
     }
+
+    public void displayHostAndLocation(Host host) {
+        printTitle(host.getLastName() + ": " +
+                host.getCity() + ", " + host.getState());
+    }
+
+    public Reservation makeReservation(Host host, Guest guest) {
+        Reservation reservation = new Reservation();
+        reservation.setGuest(guest);
+        reservation.setGuestId(guest.getGuestId());
+        reservation.setHost(host);
+        reservation.setHostId(host.getHostId());
+        reservation.setStartDate(io.readLocalDate("Start Date [MM/dd/yyyy]: "));
+        reservation.setEndDate(io.readLocalDate("End Date [MM/dd/yyyy]: "));
+        reservation.calculatePriceTotal();
+        io.println("Total: $" + reservation.getPriceTotal().toString());
+        return reservation;
+    }
+
+    public Reservation chooseReservation(List<Reservation> reservations) {
+        displayReservations(reservations);
+        Reservation result = null;
+        if (reservations.size() > 0) {
+            do {
+                int reservationId = io.readInt("Choose a reservation ID: ",
+                        reservations.get(0).getReservationId(),
+                        reservations.get(reservations.size() - 1).getReservationId());
+                for (Reservation r : reservations) {
+                    if (r.getReservationId() == reservationId) {
+                        result = r;
+                        break;
+                    }
+                }
+                if (result == null) io.println("Not a valid ID.");
+            } while (result == null);
+        }
+        return result;
+    }
+
+    public Reservation editReservation(Reservation reservation) {
+        printTitle("Update");
+
+        LocalDate startDate = io.readLocalDate("Start Date (" + reservation.getStartDate().toString() + "): ");
+        // only update if it changed
+        if (startDate.toString().length() > 0) {
+            reservation.setStartDate(startDate);
+        }
+
+        LocalDate endDate = io.readLocalDate("End Date (" + reservation.getEndDate().toString() + "): ");
+        // only update if it changed
+        if (endDate.toString().length() > 0) {
+            reservation.setEndDate(endDate);
+        }
+
+        return reservation;
+    }
+
+    public boolean confirmReservationSummary(Reservation reservation) {
+        printTitle("Summary");
+        String format = "Start:\t%s%n" +
+                "End:\t%s%n" +
+                "Total:\t%s%n";
+
+        io.printf(format, reservation.getStartDate().toString(),
+                reservation.getEndDate().toString(),
+                "$" + reservation.getPriceTotal().toString());
+
+        while (true) {
+            String selection = io.readRequiredString("Is this okay? [Y/n]: ");
+            switch (selection.toLowerCase()) {
+                case "y":
+                    return true;
+                case "n":
+                    return false;
+                default:
+                    io.println("Not a valid selection");
+            }
+        }
+    }
+
+
+
 
 }

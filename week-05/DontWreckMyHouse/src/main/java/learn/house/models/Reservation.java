@@ -14,14 +14,14 @@ public class Reservation {
     private int reservationId;
     private Host host;
     private Guest guest;
-    private int hostId;
+    private String hostId;
     private int guestId;
     private LocalDate startDate;
     private LocalDate endDate;
     private BigDecimal priceTotal;
 
         //---Constructor representing an existing Reservation
-    public Reservation(int reservationId, Host host, Guest guest, int hostId, int guestId, LocalDate startDate, LocalDate endDate, BigDecimal priceTotal) {
+    public Reservation(int reservationId, Host host, Guest guest, String hostId, int guestId, LocalDate startDate, LocalDate endDate, BigDecimal priceTotal) {
         this.reservationId = reservationId;
         this.host = host;
         this.guest = guest;
@@ -46,8 +46,8 @@ public class Reservation {
     public Guest getGuest() { return guest; }
     public void setGuest(Guest guest) { this.guest = guest; }
 
-    public int getHostId() { return hostId; }
-    public void setHostId(int hostId) { this.hostId = hostId; }
+    public String getHostId() { return hostId; }
+    public void setHostId(String hostId) { this.hostId = hostId; }
 
     public int getGuestId() { return guestId; }
     public void setGuestId(int guestId) { this.guestId = guestId; }
@@ -81,8 +81,5 @@ public class Reservation {
         //reservation price total = standard price total + weekend price total
         setPriceTotal(standardPriceTotal.add(weekendPriceTotal));
     }
-
-
-
 
 }

@@ -5,7 +5,9 @@ package learn.house.domain;
 
 import learn.house.data.HostRepository;
 import learn.house.models.Host;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HostService {
 
     private final HostRepository repository;

@@ -9,13 +9,16 @@ import learn.house.data.DataAccessException;
 import learn.house.domain.GuestService;
 import learn.house.domain.HostService;
 import learn.house.domain.ReservationService;
+import learn.house.domain.Result;
+import learn.house.models.Guest;
 import learn.house.models.Host;
 import learn.house.models.Reservation;
-import learn.house.ui.View;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
+
 import java.util.List;
+
+
 
 @Component
 public class Controller {
@@ -38,7 +41,13 @@ public class Controller {
     public void run() {
 
             //--opening title screen--
-        view.printTitle("Welcome to Don't Wreck My House!");
+        System.out.println();
+        view.printMainTitle("Welcome to Don't Wreck My House!");
+        sleep(300);
+        for(int t = 0; t < 19; t++) {
+            System.out.println(" ".repeat(19-t) + "🏠");
+            sleep(100);
+        }
 
             //--enter main() loop if no exceptions--
         try {
@@ -60,13 +69,13 @@ public class Controller {
                     viewReservation();
                     break;
                 case MAKE_RESERVATION:
-                    //makeReservation();
+                    makeReservation();
                     break;
                 case EDIT_RESERVATION:
-                    //editReservation();
+                    editReservation();
                     break;
                 case CANCEL_RESERVATION:
-                    //cancelReservation();
+                    cancelReservation();
                     break;
             }
 
@@ -83,8 +92,114 @@ public class Controller {
         }
     }
 
+    private void makeReservation() throws DataAccessException {
+        Host host = getHost();
+        if (host == null) {
+            view.displayStatus(false, "No host found");
+            return;
+        }
+
+        view.displayReservations(reservationService.findReservations(host.getHostId()));
+
+        Guest guest = getGuest();
+        if (guest == null) {
+            view.displayStatus(false, "No guest found");
+            return;
+        }
+
+        Reservation reservation = view.makeReservation(host, guest);
+
+        // Confirm addition of reservation.
+        if (confirmReservation(reservation) != null) {
+            Result<Reservation> result = reservationService.add(reservation);
+            if (!result.isSuccess()) {
+                view.displayStatus(false, result.getErrorMessages());
+            } else {
+                String successMessage = String.format("Reservation %s created.",
+                        result.getPayload().getReservationId());
+                view.displayStatus(true, successMessage);
+            }
+        } else {
+            view.printTitle("Cancelling");
+        }
+    }
+
+    private void editReservation() throws DataAccessException {
+        Host host = getHost();
+        if (host == null) {
+            view.displayStatus(false, "No host found");
+            return;
+        }
+
+        List<Reservation> reservations = reservationService
+                .findFutureReservations(host.getHostId());
+
+        Reservation reservation = view.chooseReservation(reservations);
+        reservation = view.editReservation(reservation);
+
+        if (view.confirmReservationSummary(reservation)) {
+            Result<Reservation> result = reservationService.update(reservation);
+
+            if (result.isSuccess()) {
+                view.displayStatus(true, "Reservation " + reservation.getReservationId() + " updated.");
+            } else {
+                view.displayStatus(false, result.getErrorMessages());
+            }
+        }
+    }
+
+    private void cancelReservation() throws DataAccessException {
+        Result<Reservation> result;
+
+        Host host = getHost();
+        if (host == null) {
+            view.displayStatus(false, "No host found");
+            return;
+        }
+
+        List<Reservation> reservations = reservationService
+                .findFutureReservations(host.getHostId());
+
+        if (reservations.size() == 0) {
+            view.displayStatus(false, "No reservations found.");
+            return;
+        }
+
+        Reservation reservation = view.chooseReservation(reservations);
+
+        result = reservationService.deleteByReservationId(host.getHostId(),
+                reservation.getReservationId());
+
+        if (result.isSuccess()) {
+            view.displayStatus(true, "Reservation " + reservation.getReservationId() + " cancelled.");
+        } else {
+            view.displayStatus(false, result.getErrorMessages());
+        }
+    }
+
     private Host getHost() {
         String hostEmail = view.getEmail("Host");
         return hostService.findByEmail(hostEmail);
     }
+
+    private Guest getGuest() {
+        String guestEmail = view.getEmail("Guest");
+        return guestService.findByEmail(guestEmail);
+    }
+
+    private Reservation confirmReservation(Reservation reservation) {
+        boolean confirmed = view.confirmReservationSummary(reservation);
+        if (confirmed) return reservation;
+
+        return null;
+    }
+
+    public static void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

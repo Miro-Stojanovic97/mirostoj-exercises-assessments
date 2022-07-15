@@ -4,22 +4,52 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- Reservation Repository -->
+    <bean id="reservationFileRepository" class="dev10.house.data.ReservationFileRepository">
+        <constructor-arg value="./data/reservations"/>
+    </bean>
+
+    <!-- Host Repository -->
+    <bean id="hostFileRepository" class="dev10.house.data.HostFileRepository">
+        <constructor-arg value="./data/hosts.csv"/>
+    </bean>
+
+    <!-- Guest Repository -->
+    <bean id="guestFileRepository" class="dev10.house.data.GuestFileRepository">
+        <constructor-arg value="./data/guests.csv"/>
+    </bean>
+
+    <!-- Reservation Service -->
+    <bean id="reservationService" class="dev10.house.domain.ReservationService">
+        <constructor-arg ref="reservationFileRepository"/>
+        <constructor-arg ref="guestFileRepository"/>
+        <constructor-arg ref="hostFileRepository"/>
+    </bean>
+
+    <!-- Guest Service -->
+    <bean id="guestService" class="dev10.house.domain.GuestService">
+        <constructor-arg ref="guestFileRepository"/>
+    </bean>
+
+    <!-- Host Service -->
+    <bean id="hostService" class="dev10.house.domain.HostService">
+        <constructor-arg ref="hostFileRepository"/>
+    </bean>
 
     <!-- IO -->
-    <bean id="io" class="learn.house.ui.ConsoleIO"/>
+    <bean id="io" class="dev10.house.ui.ConsoleIO"/>
 
     <!-- View -->
-    <bean id="view" class="learn.house.ui.View">
+    <bean id="view" class="dev10.house.ui.View">
         <constructor-arg ref="io"/>
     </bean>
 
     <!-- Controller -->
-    <bean class="learn.house.ui.Controller">
+    <bean class="dev10.house.ui.Controller">
         <constructor-arg ref="guestService"/>
         <constructor-arg ref="hostService"/>
         <constructor-arg ref="reservationService"/>
         <constructor-arg ref="view"/>
     </bean>
-
 
 </beans>
