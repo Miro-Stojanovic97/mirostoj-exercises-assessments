@@ -66,9 +66,9 @@ public class Reservation {
         long totalDays = ChronoUnit.DAYS.between(startDate, endDate); //total days (all) in the reservation
         long weekendDays = 0; //total weekend days in the reservation
 
-        for (LocalDate i = startDate; i.isBefore(endDate); i.plusDays(1)) {
+        for (LocalDate d = startDate; d.isBefore(endDate); d = d.plusDays(1)) {
             //if there's a weekend day in the reservation, tally it++
-            if(i.getDayOfWeek() == DayOfWeek.FRIDAY || i.getDayOfWeek() == DayOfWeek.SATURDAY) {
+            if(d.getDayOfWeek() == DayOfWeek.FRIDAY || d.getDayOfWeek() == DayOfWeek.SATURDAY) {
                 weekendDays++;
             }
         }

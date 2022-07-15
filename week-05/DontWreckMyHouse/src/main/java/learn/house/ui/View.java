@@ -37,6 +37,7 @@ public class View {
 
             //---prompt user to choose option
         String message = String.format("Choose an option [%s - %s]:  ", minOption, maxOption);
+        System.out.println();
 
             //---return menu option from value. Validate input in ConsoleIO: confirm in-range, confirm int, confirm input
         return MenuOption.fromValue(io.readInt(message, minOption, maxOption));
@@ -44,14 +45,9 @@ public class View {
     }
 
     public void printTitle(String message) {
-        for(int t = 0; t < 12; t++) {
-            if(t<9) {
-                System.out.println(" ".repeat(t) + "🏠");
-                Controller.sleep(105);
-            } else {
-                System.out.println(" ".repeat(8) + "🏠");
-                Controller.sleep(150);
-            }
+        for(int t = 0; t < 7; t++) {
+            System.out.println(" ".repeat(t) + "🏠\\\\🏠");
+            Controller.sleep(100);
         }
         //---console title formatting
         String openingTitle = " 🏠 " + message + " 🏠 ";
@@ -69,6 +65,7 @@ public class View {
         io.println("╭" + "━".repeat(openingTitle.length() - 1) + "╮");
         io.println("│" + openingTitle + "│");
         io.println("╰" + "━".repeat(openingTitle.length() - 1) + "╯");
+        Controller.sleep(1000);
     }
 
     public void printException(Exception ex) {
@@ -111,7 +108,8 @@ public class View {
             );
             io.print("\n");
         }
-        io.print("\n");
+        System.out.println();
+        io.readString("Press ENTER to continue:  ");
     }
 
     public void displayHostAndLocation(Host host) {
@@ -125,8 +123,8 @@ public class View {
         reservation.setGuestId(guest.getGuestId());
         reservation.setHost(host);
         reservation.setHostId(host.getHostId());
-        reservation.setStartDate(io.readLocalDate("Start Date [MM/dd/yyyy]: "));
-        reservation.setEndDate(io.readLocalDate("End Date [MM/dd/yyyy]: "));
+        reservation.setStartDate(io.readLocalDate("Start Date [yyyy-MM-dd]: "));
+        reservation.setEndDate(io.readLocalDate("End Date [yyyy-MM-dd]: "));
         reservation.calculatePriceTotal();
         io.println("Total: $" + reservation.getPriceTotal().toString());
         return reservation;
@@ -153,15 +151,15 @@ public class View {
     }
 
     public Reservation editReservation(Reservation reservation) {
-        printTitle("Update");
+        printTitle("Update Reservation");
 
-        LocalDate startDate = io.readLocalDate("Start Date (" + reservation.getStartDate().toString() + "): ");
+        LocalDate startDate = io.readLocalDate("Start Date (" + reservation.getStartDate() + "): ");
         // only update if it changed
         if (startDate.toString().length() > 0) {
             reservation.setStartDate(startDate);
         }
 
-        LocalDate endDate = io.readLocalDate("End Date (" + reservation.getEndDate().toString() + "): ");
+        LocalDate endDate = io.readLocalDate("End Date (" + reservation.getEndDate() + "): ");
         // only update if it changed
         if (endDate.toString().length() > 0) {
             reservation.setEndDate(endDate);
@@ -171,7 +169,7 @@ public class View {
     }
 
     public boolean confirmReservationSummary(Reservation reservation) {
-        printTitle("Summary");
+        printTitle("Reservation Summary");
         String format = "Start:\t%s%n" +
                 "End:\t%s%n" +
                 "Total:\t%s%n";

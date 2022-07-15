@@ -21,11 +21,11 @@ public class ConsoleIO {
     private static final String REQUIRED
             = "[INVALID] Value is required.";
     private static final String INVALID_DATE
-            = "[INVALID] Enter a date in MM/dd/yyyy format.";
+            = "[INVALID] Enter a date in yyyy-mm-dd format.";
 
     private final Scanner scanner = new Scanner(System.in);
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public void print(String message) {
         System.out.print(message);

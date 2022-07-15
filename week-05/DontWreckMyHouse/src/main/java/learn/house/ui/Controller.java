@@ -44,9 +44,9 @@ public class Controller {
         System.out.println();
         view.printMainTitle("Welcome to Don't Wreck My House!");
         sleep(300);
-        for(int t = 0; t < 19; t++) {
-            System.out.println(" ".repeat(19-t) + "🏠");
-            sleep(100);
+        for(int t = 0; t < 17; t++) {
+            System.out.println(" ".repeat(17-t) + "🏠//🏠");
+            sleep(80);
         }
 
             //--enter main() loop if no exceptions--
@@ -125,7 +125,7 @@ public class Controller {
     }
 
     private void editReservation() throws DataAccessException {
-        Host host = getHost();
+        Host host = getHost(); //getHostEmail
         if (host == null) {
             view.displayStatus(false, "No host found");
             return;
@@ -178,11 +178,13 @@ public class Controller {
     }
 
     private Host getHost() {
+        System.out.println();
         String hostEmail = view.getEmail("Host");
         return hostService.findByEmail(hostEmail);
     }
 
     private Guest getGuest() {
+        System.out.println();
         String guestEmail = view.getEmail("Guest");
         return guestService.findByEmail(guestEmail);
     }
