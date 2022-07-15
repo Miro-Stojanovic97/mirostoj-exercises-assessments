@@ -68,25 +68,29 @@ Convert these eventually to the gantt chart below
 - Create packages and initial classes/enums/interfaces
   - App, UI and Models --> 1-hrs
   - Data and domain layer --> 1-hr
-- Fully create models --> 2hrs
+- Fully create models --> 3hrs
 
 <!-- Class Diagram / Charting of the Application Development Project-->
 ### *Class Diagram*
 ```plantuml
 @startuml
 skinparam linetype poly
+skinparam backgroundColor sandybrown
+skinparam ClassBackgroundColor white
+skinparam PackageBackgroundColor azure
 
-MODELS.Reservation -- UI.Controller
-UI.Controller -- DOMAIN.ReservationService
-UI.Controller -- DOMAIN.HostService
-UI.Controller -- DOMAIN.GuestService
-DOMAIN.ReservationService --- DATA.ReservationRepository
-DOMAIN.HostService --- DATA.HostRepository
-DOMAIN.GuestService --- DATA.GuestRepository
+
+MODELS.Reservation <-- UI.Controller
+UI.Controller --> DOMAIN.ReservationService
+UI.Controller --> DOMAIN.HostService
+UI.Controller --> DOMAIN.GuestService
+DOMAIN.ReservationService ---> DATA.ReservationRepository
+DOMAIN.HostService ---> DATA.HostRepository
+DOMAIN.GuestService ---> DATA.GuestRepository
 
 package "MODELS" {
-Host - Reservation 
-Reservation - Guest
+Host . Reservation 
+Reservation . Guest
     class Guest {
     tbd
     }
@@ -98,9 +102,9 @@ Reservation - Guest
     }
 }
 package "UI" {
-Controller - View
-View - ConsoleIO
-MenuOption - Controller
+Controller .> View
+View . ConsoleIO
+ConsoleIO . MenuOption
     class ConsoleIO {
     tbd
     }
@@ -167,6 +171,9 @@ package "DATA" {
 ### *Work Breakdown*
 ```plantuml
 @startwbs
+skinparam linetype poly
+skinparam backgroundColor snow
+
 <style>
 node {
 MaximumWidth 300
@@ -180,7 +187,7 @@ MaximumWidth 300
 **** 1.2.2 Create Controller Methods [2-hrs]
 **** 1.2.3 Create View Methods [2-hrs]
 ** 2 Back End
-*** 2.1 Create Guest, Host, and Reservation models [2-hrs]
+*** 2.1 Create Guest, Host, and Reservation models [3-hrs]
 **** 2.1.1 Configure POM.xml [0.2-hrs]
 *** 2.2 Back End 2 [xx-hrs]
 *** 2.3 Back End 3 [xx-hrs]
@@ -202,10 +209,10 @@ title Work Breakdown - Hours
 [Front End] lasts 12 days
 [Front End] is colored in lightblue/blue
 [Front End] is 40% complete
-    [1.1] lasts 4 days
+    [1.1] lasts 2 days
         [1.1] is colored in silver/black
-        [1.1] is 40% completed
-    [1.2] starts at [1.1]'s end and lasts 4 days
+        [1.1] is 100% completed
+    [1.2] starts 3 days after [1.1]'s end and lasts 4 days
         [1.2] is colored in silver/black
         [1.2] is 40% completed
     [1.3] starts at [1.2]'s end and lasts 4 days
@@ -215,9 +222,9 @@ title Work Breakdown - Hours
 [Back End] starts at [1.1]'s end and lasts 12 days
 [Back End] is colored in lightgreen/green
 [Back End] is 40% completed
-    [2.1] starts at [Back End]'s start and lasts 2 days
+    [2.1] starts at [Back End]'s start and lasts 3 days
         [2.1] is colored in silver/black
-        [2.1] is 50% complete
+        [2.1] is 100% complete
     [2.2] starts at [2.1]'s end and lasts 4 days
         [2.2] is colored in silver/black
         [2.2] is 40% complete
