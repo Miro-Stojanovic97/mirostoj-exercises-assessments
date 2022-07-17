@@ -15,24 +15,24 @@
         <constructor-arg value="Dev10 Arena"/>
     </bean>
 
-    <bean id="Adel" class="learn.battle.fighters.Fighter">
-        <constructor-arg value="Adel"/>
+    <bean id="Miro" class="learn.battle.fighters.Fighter">
+        <constructor-arg value="Miro"/>
     </bean>
 
     <bean class="learn.battle.environment.Battle">
         <constructor-arg ref="location"/>
         <constructor-arg>
             <list>
-                <ref bean="Adel"/>
+                <ref bean="Miro"/>
                 <bean class="learn.battle.fighters.Fighter">
-                    <constructor-arg value="Dex"/>
+                    <constructor-arg value="Mitchell"/>
                 </bean>
                 <bean class="learn.battle.fighters.Fighter">
-                    <constructor-arg value="Miro"/>
+                    <constructor-arg value="Desiree"/>
                 </bean>
-                <bean class="learn.battle.fighters.Fighter">
+                <!--<bean class="learn.battle.fighters.Fighter">
                     <constructor-arg value="Rakiyah"/>
-                </bean>
+                </bean> -->
             </list>
         </constructor-arg>
         <property name="announcer" ref="announcer"/>
