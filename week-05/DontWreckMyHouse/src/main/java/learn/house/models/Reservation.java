@@ -21,7 +21,7 @@ public class Reservation {
     private BigDecimal priceTotal;
 
         //---Constructor representing an existing Reservation
-    public Reservation(int reservationId, Host host, Guest guest, String hostId, int guestId, LocalDate startDate, LocalDate endDate, BigDecimal priceTotal) {
+    public Reservation(int reservationId, Host host, Guest guest, String hostId, int guestId, LocalDate startDate, LocalDate endDate) {
         this.reservationId = reservationId;
         this.host = host;
         this.guest = guest;
