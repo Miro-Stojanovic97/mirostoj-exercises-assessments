@@ -8,6 +8,7 @@ import learn.house.models.Host;
 import learn.house.models.Reservation;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -157,19 +158,21 @@ public class View {
         // only update if it changed
         if (startDate.toString().length() > 0) {
             reservation.setStartDate(startDate);
+            reservation.calculatePriceTotal();
         }
 
         LocalDate endDate = io.readLocalDate("End Date (" + reservation.getEndDate() + "): ");
         // only update if it changed
         if (endDate.toString().length() > 0) {
             reservation.setEndDate(endDate);
+            reservation.calculatePriceTotal();
         }
-
         return reservation;
     }
 
     public boolean confirmReservationSummary(Reservation reservation) {
         printTitle("Reservation Summary");
+        reservation.calculatePriceTotal();
         String format = "Start:\t%s%n" +
                 "End:\t%s%n" +
                 "Total:\t%s%n";

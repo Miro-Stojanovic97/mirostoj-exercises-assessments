@@ -179,22 +179,22 @@ node {
 MaximumWidth 350
 }
 </style>
-* Don't Wreck My House  [xx-hrs]
-** 1)  Front End  [xx-hrs]
+* Don't Wreck My House  [22-hrs]
+** 1)  Front End  [8-hrs]
 *** 1.1)  Create App, Controller, MenuOptions, View, and ConsoleIO classes/enum  [2-hrs]
 *** 1.2)  Create UI methods/logic [6-hrs]
 **** 1.2.1)  Create ConsoleIO Methods  [2-hrs]
 **** 1.2.2)  Create Controller Methods  [2-hrs]
 **** 1.2.3)  Create View Methods  [2-hrs]
-*** 1.3)  Implement Stretch Goals in Front-End  [xx-hrs]
-** 2)  Back End  [xx-hrs]
+*** 1.3)  Implement Stretch Goals in Front-End  [0-hrs]
+** 2)  Back End  [14-hrs]
 *** 2.1)  Configure POM.xml and Resources  [1-hrs]
 *** 2.2)  Create Guest, Host, and Reservation models  [3-hrs]
 *** 2.3)  Create Data and Domain Layer, Implement CRUD Operations  [6-hrs]
 **** 2.3.1)  Implement methods in Repository classes  [3-hrs]
 **** 2.3.2)  Implement methods in Service classes  [3-hrs]
 *** 2.4)  Application Testing  [4-hrs]
-*** 2.5)  Implement Stretch Goals in Back-End  [xx-hrs]
+*** 2.5)  Implement Stretch Goals in Back-End  [0-hrs]
 @endwbs
 ```
 
@@ -207,43 +207,43 @@ title Work Breakdown - Hours
 
 /' Days in Gantt format below = Hours in project IRL '/
 
-[Total Project Hours] lasts 24 days
+[Total Project Hours] lasts 22 days
 [Total Project Hours] is colored in orange/black
-[Total Project Hours] is 40% complete
+[Total Project Hours] is 99% complete
 --WORK BREAKDOWN --
 [Front End] lasts 12 days
 [Front End] is colored in lightblue/blue
-[Front End] is 40% complete
+[Front End] is 100% complete
     [1.1] lasts 2 days
         [1.1] is colored in silver/black
         [1.1] is 100% completed
-    [1.2] starts 3 days after [1.1]'s end and lasts 6 days
+    [1.2] starts 4 days after [1.1]'s end and lasts 6 days
         [1.2] is colored in silver/black
-        [1.2] is 25% completed
-    [1.3] starts at [1.2]'s end and lasts 4 days
+        [1.2] is 100% completed
+    [1.3] starts at [1.2]'s end and lasts 1 days
         [1.3] is colored in silver/black
-        [1.3] is 40% completed
-[Front End Complete] happens at [1.3]'s end
+        [1.3] is 0% completed
+[Front End Complete] happens at [1.2]'s end
 
-[Back End] starts at [1.1]'s end and lasts 12 days
+[Back End] starts at [1.1]'s end and lasts 20 days
 [Back End] is colored in lightgreen/green
-[Back End] is 40% completed
+[Back End] is 100% completed
     [2.1] starts at [Back End]'s start and lasts 1 days
         [2.1] is colored in silver/black
         [2.1] is 100% complete
     [2.2] starts at [2.1]'s end and lasts 3 days
         [2.2] is colored in silver/black
         [2.2] is 100% complete
-    [2.3] starts at [2.2]'s end and lasts 4 days
+    [2.3] starts 6 days after [2.2]'s end and lasts 6 days
         [2.3] is colored in silver/black
-        [2.3] is 40% complete
+        [2.3] is 100% complete
     [2.4] starts at [2.3]'s end and lasts 4 days
         [2.4] is colored in silver/black
-        [2.4] is 40% complete
-    [2.5] starts at [2.4]'s end and lasts 4 days
+        [2.4] is 100% complete
+    [2.5] starts at [2.4]'s end and lasts 1 days
         [2.5] is colored in silver/black
-        [2.5] is 40% complete
-[Back End Complete] happens at [2.5]'s end
+        [2.5] is 0% complete
+[Back End Complete] happens at [2.4]'s end
 
 @endgantt
 ```
