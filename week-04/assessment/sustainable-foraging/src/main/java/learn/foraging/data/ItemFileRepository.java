@@ -3,18 +3,24 @@ package learn.foraging.data;
 import learn.foraging.models.Category;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ItemFileRepository implements ItemRepository {
 
     private static final String HEADER = "id,name,category,dollars/kilogram";
+    private static final String DELIMITER = ",";
+    private static final String CONVERTED = "*";
+
     private final String filePath;
 
-    public ItemFileRepository(String filePath) {
+    public ItemFileRepository(@Value("${itemFilePath}") String filePath) {
         this.filePath = filePath;
     }
 
@@ -88,7 +94,7 @@ public class ItemFileRepository implements ItemRepository {
     private String serialize(Item item) {
         return String.format("%s,%s,%s,%s",
                 item.getId(),
-                item.getName(),
+                item.getName().replace(DELIMITER, CONVERTED),
                 item.getCategory(),
                 item.getDollarPerKilogram());
     }
@@ -96,7 +102,7 @@ public class ItemFileRepository implements ItemRepository {
     private Item deserialize(String[] fields) {
         Item result = new Item();
         result.setId(Integer.parseInt(fields[0]));
-        result.setName(fields[1]);
+        result.setName(fields[1].replace(CONVERTED, DELIMITER));
         result.setCategory(Category.valueOf(fields[2]));
         result.setDollarPerKilogram(new BigDecimal(fields[3]));
         return result;

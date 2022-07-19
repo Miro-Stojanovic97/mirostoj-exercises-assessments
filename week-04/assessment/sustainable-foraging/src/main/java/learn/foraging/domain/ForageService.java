@@ -7,7 +7,9 @@ import learn.foraging.data.ItemRepository;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Service
 public class ForageService {
 
     private final ForageRepository forageRepository;
@@ -25,6 +28,19 @@ public class ForageService {
         this.forageRepository = forageRepository;
         this.foragerRepository = foragerRepository;
         this.itemRepository = itemRepository;
+    }
+
+    public Map<String, Double> itemKg(List<Forage> forages) {
+        return forages.stream().collect(Collectors.groupingBy(forage ->
+                forage.getItem().getName(),
+                Collectors.summingDouble(forage -> forage.getKilograms())));
+    }
+
+    public Map<String, BigDecimal> categoryValue(List<Forage> forages) {
+        return forages.stream()
+                .collect(Collectors.groupingBy(forage -> forage.getItem().
+                        getCategory().toString(),
+                        Collectors.reducing(BigDecimal.ZERO, Forage::getValue, BigDecimal::add)));
     }
 
     public List<Forage> findByDate(LocalDate date) {
@@ -145,4 +161,18 @@ public class ForageService {
             result.addErrorMessage("Item does not exist.");
         }
     }
+
+    private void validateNotDuplicate(Forage forage, Result<Forage> result) {
+        List<Forage> onDate = forageRepository.findByDate(forage.getDate());
+        if (onDate.size() == 0) return;
+
+        //check when ID from forager and item matches
+        for(Forage f : onDate) {
+            if (f.getForager().getId().equals(forage.getForager().getId())
+                && f.getItem().getId() == forage.getItem().getId()) {
+            result.addErrorMessage("This is a duplicate forage");
+            }
+        }
+    }
+
 }
