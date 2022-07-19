@@ -63,12 +63,7 @@ A **Multi-Layer Application** that allows a user to reserve rooms for guests wit
 
 
 ## Application Planning:
-Convert these eventually to the gantt chart below
-- Configure POM.xml --> 0.5-hrs 
-- Create packages and initial classes/enums/interfaces
-  - App, UI and Models --> 1-hrs
-  - Data and domain layer --> 1-hr
-- Fully create models --> 3hrs
+git 
 
 <!-- Class Diagram / Charting of the Application Development Project-->
 ### *Class Diagram*
