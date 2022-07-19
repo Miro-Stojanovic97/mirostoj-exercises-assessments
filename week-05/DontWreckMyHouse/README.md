@@ -63,7 +63,6 @@ A **Multi-Layer Application** that allows a user to reserve rooms for guests wit
 
 
 ## Application Planning:
-git 
 
 <!-- Class Diagram / Charting of the Application Development Project-->
 ### *Class Diagram*
