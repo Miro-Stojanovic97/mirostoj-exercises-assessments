@@ -37,14 +37,14 @@ node {
 MaximumWidth 350
 }
 </style>
-* Ramsey Theater Company Database Planning  [13-hrs]
+* Ramsey Theater Company Database Planning  [14-hrs]
 ** 1)  DDL Development  [3-hrs]
 *** 1.1)  Create Database [1-hr]
 *** 1.2)  Create Diagram / Planning [2-hr]
-** 2)  DML Development  [4-hrs]
-*** 2.1)  Inserts  [2-hrs]
+** 2)  DML Development  [5-hrs]
+*** 2.1)  Inserts  [3-hrs]
 *** 2.2)  Updates  [1-hrs]
-*** 2.3)  Delete   [1-hrs]
+*** 2.3)  Deletions   [1-hrs]
 ** 3) DQL Development [6-hrs]
 *** 3.1)  Required Queries  [4-hrs]
 *** 3.2)  Stretch Goals  [2-hrs]
