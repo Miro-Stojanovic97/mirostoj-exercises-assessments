@@ -1,0 +1,44 @@
+//Miro Stojanovic
+//Module 5 Assessment: Don't Break My House
+
+package learn.house.models;
+
+public class Guest {
+
+        //---Guest class constructor fields---
+    private int guestId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+
+        //---Constructor representing an existing Guest---
+    public Guest(int guestId, String firstName, String lastName, String email, String phone) {
+        this.guestId = guestId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+    }
+
+        //---Constructor representing a new Guest---
+    public Guest() {
+    }
+
+        //---getters and setters for Guest class---
+    public int getGuestId() { return guestId; }
+    public void setGuestId(int guestId) { this.guestId = guestId; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+}

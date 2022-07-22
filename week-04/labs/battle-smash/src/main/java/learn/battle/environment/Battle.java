@@ -38,7 +38,7 @@ public class Battle {
         welcome();
 
         while (!isOver) {
-            sleep(1000);
+            sleep(1500);
             round++;
             announceRound();
             executeRound();
@@ -75,10 +75,10 @@ public class Battle {
             announcer.announce(fighter.getName());
         }
 
-        sleep(500);
+        sleep(1000);
         announcer.announce("");
         announcer.announce("LET'SSSSSS GET READY TO RUMBLEEEEEE!");
-        sleep(500);
+        sleep(1000);
         announcer.announce("................");
         announcer.announce("FIGHT!");
     }
@@ -93,7 +93,7 @@ public class Battle {
             announcer.announce(msg);
         }
         announcer.announce("");
-        sleep(500);
+        sleep(1000);
     }
 
     private void executeRound() {
@@ -114,7 +114,7 @@ public class Battle {
                 attacked = current.get(random.nextInt(current.size()));
             } while (attacker == attacked);
 
-            int healthDrain = random.nextInt(20) + 5;
+            int healthDrain = random.nextInt(10) + 5;
             attacked.reduceHealth(healthDrain);
             announcer.announce(String.format(
                     "%s attacks %s and drains %s health.",
@@ -130,7 +130,7 @@ public class Battle {
                 attacker.increaseHealth(healthDrain);
             }
 
-            sleep(150);
+            sleep(500);
         }
 
         isOver = current.size() == 1;
