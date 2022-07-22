@@ -1,6 +1,6 @@
 copy and pasted from last project
 
-## Application Planning:
+## Database Planning:
 
 <!-- Class Diagram / Charting of the Application Development Project-->
 ### *Class Diagram*
@@ -11,91 +11,17 @@ skinparam backgroundColor sandybrown
 skinparam ClassBackgroundColor white
 skinparam PackageBackgroundColor azure
 
+CUSTOMER --x TICKET
+THEATER --x TICKET
 
-MODELS.Reservation <-- UI.Controller
-UI.Controller --> DOMAIN.ReservationService
-UI.Controller --> DOMAIN.HostService
-UI.Controller --> DOMAIN.GuestService
-DOMAIN.ReservationService ---> DATA.ReservationRepository
-DOMAIN.HostService ---> DATA.HostRepository
-DOMAIN.GuestService ---> DATA.GuestRepository
+package "CUSTOMER" {
+}
+package "THEATER" {
 
-package "MODELS" {
-Host . Reservation 
-Reservation . Guest
-    class Guest {
-    tbd
-    }
-    class Host {
-    tbd
-    }
-    class Reservation {
-    tbd
-    }
 }
-package "UI" {
-Controller .> View
-View . ConsoleIO
-ConsoleIO . MenuOption
-    class ConsoleIO {
-    tbd
-    }
-    class Controller {
-    - ReservationService reservationService
-    - HostService hostService 
-    - GuestService guestService
-    - View view
-    tbd
-    }
-    enum MenuOption {
-    tbd
-    }
-    class View {
-    tbd
-    }
+package "TICKET" {
+   
 }
-package "DOMAIN" {
-    class GuestService {
-    tbd
-    }
-    class HostService {
-    tbd
-    }
-    class ReservationService {
-    tbd
-    }
-    class Result {
-    tbd
-    }  
-}
-package "DATA" {
-    GuestRepository .. GuestFileRepository
-    HostRepository .. HostFileRepository
-    ReservationRepository .. ReservationFileRepository
-    
-    class DataAccessException {
-    tbd
-    }
-    class GuestFileRepository {
-    tbd
-    }
-    interface GuestRepository {
-    tbd
-    }
-    class HostFileRepository {
-    tbd
-    }
-    interface HostRepository {
-    tbd
-    }
-    class ReservationFileRepository {
-    tbd
-    }
-    interface ReservationRepository {
-    tbd
-    }
-}
-
 @enduml
 ```
 
@@ -111,22 +37,17 @@ node {
 MaximumWidth 350
 }
 </style>
-* Don't Wreck My House  [22-hrs]
-** 1)  Front End  [8-hrs]
-*** 1.1)  Create App, Controller, MenuOptions, View, and ConsoleIO classes/enum  [2-hrs]
-*** 1.2)  Create UI methods/logic [6-hrs]
-**** 1.2.1)  Create ConsoleIO Methods  [2-hrs]
-**** 1.2.2)  Create Controller Methods  [2-hrs]
-**** 1.2.3)  Create View Methods  [2-hrs]
-*** 1.3)  Implement Stretch Goals in Front-End  [0-hrs]
-** 2)  Back End  [14-hrs]
-*** 2.1)  Configure POM.xml and Resources  [1-hrs]
-*** 2.2)  Create Guest, Host, and Reservation models  [3-hrs]
-*** 2.3)  Create Data and Domain Layer, Implement CRUD Operations  [6-hrs]
-**** 2.3.1)  Implement methods in Repository classes  [3-hrs]
-**** 2.3.2)  Implement methods in Service classes  [3-hrs]
-*** 2.4)  Application Testing  [4-hrs]
-*** 2.5)  Implement Stretch Goals in Back-End  [0-hrs]
+* Ramsey Theater Company Database Planning  [13-hrs]
+** 1)  DDL Development  [3-hrs]
+*** 1.1)  Create Database [1-hr]
+*** 1.2)  Create Diagram / Planning [2-hr]
+** 2)  DML Development  [4-hrs]
+*** 2.1)  Inserts  [2-hrs]
+*** 2.2)  Updates  [1-hrs]
+*** 2.3)  Delete   [1-hrs]
+** 3) DQL Development [6-hrs]
+*** 3.1)  Required Queries  [4-hrs]
+*** 3.2)  Stretch Goals  [2-hrs]
 @endwbs
 ```
 
@@ -139,23 +60,20 @@ title Work Breakdown - Hours
 
 /' Days in Gantt format below = Hours in project IRL '/
 
-[Total Project Hours] lasts 22 days
+[Total Project Hours] lasts 13 days
 [Total Project Hours] is colored in orange/black
-[Total Project Hours] is 99% complete
+[Total Project Hours] is 0% complete
 --WORK BREAKDOWN --
-[Front End] lasts 12 days
-[Front End] is colored in lightblue/blue
-[Front End] is 100% complete
-    [1.1] lasts 2 days
+[DDL] lasts 3 days
+[DDL] is colored in lightblue/blue
+[DDL] is 100% complete
+    [1.1] lasts 1 days
         [1.1] is colored in silver/black
         [1.1] is 100% completed
-    [1.2] starts 4 days after [1.1]'s end and lasts 6 days
+    [1.2] starts after [1.1]'s end and lasts 2 days
         [1.2] is colored in silver/black
         [1.2] is 100% completed
-    [1.3] starts at [1.2]'s end and lasts 1 days
-        [1.3] is colored in silver/black
-        [1.3] is 0% completed
-[Front End Complete] happens at [1.2]'s end
+[DDL Complete] happens at [1.2]'s end
 
 [Back End] starts at [1.1]'s end and lasts 20 days
 [Back End] is colored in lightgreen/green
