@@ -15,6 +15,7 @@ CUSTOMER --x TICKET
 THEATER --x TICKET
 
 package "CUSTOMER" {
+class customer_id
 }
 package "THEATER" {
 
