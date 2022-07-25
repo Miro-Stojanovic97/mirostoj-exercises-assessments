@@ -1,30 +1,5 @@
-copy and pasted from last project
 
 ## Database Planning:
-
-<!-- Class Diagram / Charting of the Application Development Project-->
-### *Class Diagram*
-```plantuml
-@startuml
-skinparam linetype poly
-skinparam backgroundColor sandybrown
-skinparam ClassBackgroundColor white
-skinparam PackageBackgroundColor azure
-
-CUSTOMER --x TICKET
-THEATER --x TICKET
-
-package "CUSTOMER" {
-class customer_id
-}
-package "THEATER" {
-
-}
-package "TICKET" {
-   
-}
-@enduml
-```
 
 <!-- Work Breakdown Structure of the Application Development Project-->
 ### *Work Breakdown*
@@ -61,9 +36,9 @@ title Work Breakdown - Hours
 
 /' Days in Gantt format below = Hours in project IRL '/
 
-[Total Project Hours] lasts 13 days
+[Total Project Hours] lasts 14 days
 [Total Project Hours] is colored in orange/black
-[Total Project Hours] is 0% complete
+[Total Project Hours] is 86% complete
 --WORK BREAKDOWN --
 [DDL] lasts 3 days
 [DDL] is colored in lightblue/blue
@@ -76,25 +51,31 @@ title Work Breakdown - Hours
         [1.2] is 100% completed
 [DDL Complete] happens at [1.2]'s end
 
-[Back End] starts at [1.1]'s end and lasts 20 days
-[Back End] is colored in lightgreen/green
-[Back End] is 100% completed
-    [2.1] starts at [Back End]'s start and lasts 1 days
+[DML] starts at [1.2]'s end and lasts 5 days
+[DML] is colored in lightgreen/green
+[DML] is 100% complete
+    [2.1] starts at [DML]'s start and lasts 3 days
         [2.1] is colored in silver/black
         [2.1] is 100% complete
-    [2.2] starts at [2.1]'s end and lasts 3 days
+    [2.2] starts at [2.1]'s end and lasts 1 days
         [2.2] is colored in silver/black
         [2.2] is 100% complete
-    [2.3] starts 6 days after [2.2]'s end and lasts 6 days
+    [2.3] starts at [2.2]'s end and lasts 1 days
         [2.3] is colored in silver/black
         [2.3] is 100% complete
-    [2.4] starts at [2.3]'s end and lasts 4 days
-        [2.4] is colored in silver/black
-        [2.4] is 100% complete
-    [2.5] starts at [2.4]'s end and lasts 1 days
-        [2.5] is colored in silver/black
-        [2.5] is 0% complete
-[Back End Complete] happens at [2.4]'s end
+[DML Complete] happens at [2.3]'s end
+
+[DQL] starts at [2.3]'s end and lasts 6 days
+[DQL] is colored in lightblue/blue
+[DQL] is 70% complete
+    [3.1] starts at [DQL]'s start and lasts 4 days
+        [3.1] is colored in silver/black
+        [3.1] is 100% completed
+    [3.2] starts after [3.1]'s end and lasts 2 days
+        [3.2] is colored in silver/black
+        [3.2] is 0% completed
+[DQL Complete] happens at [3.1]'s end
+[Project Complete] happens at [3.1]'s end
 
 @endgantt
 ```
