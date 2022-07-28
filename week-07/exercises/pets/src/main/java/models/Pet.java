@@ -2,36 +2,28 @@ package models;
 
 import java.util.Objects;
 
+    // pet class
     public class Pet {
 
+        // declare our pet fields
         private int petId;
         private String name;
         private String type;
 
-        public int getPetId() {
-            return petId;
-        }
+        // pet getters and setters
+        // pet id
+        public int getPetId() { return petId; }
+        public void setPetId(int petId) { this.petId = petId; }
 
-        public void setPetId(int petId) {
-            this.petId = petId;
-        }
+        // name
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
 
-        public String getName() {
-            return name;
-        }
+        // type
+        public String getType() { return type; }
+        public void setType(String type) { this.type = type; }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
+        // returns a string of pet constructor: Pet{petId, name, ...}
         @Override
         public String toString() {
             return "Pet{" +

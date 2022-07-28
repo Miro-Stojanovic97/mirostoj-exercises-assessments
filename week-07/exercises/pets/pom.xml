@@ -16,6 +16,20 @@
     <dependencies>
 
         <!-- NEW DEPENDENCY -->
+
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.20</version>
+        </dependency>
+        <!-- Spring JDBC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.20</version>
+        </dependency>
+
         <!-- database driver -->
         <dependency>
             <groupId>mysql</groupId>
