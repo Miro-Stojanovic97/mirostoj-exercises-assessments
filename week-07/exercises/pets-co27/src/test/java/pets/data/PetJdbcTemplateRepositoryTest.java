@@ -1,11 +1,10 @@
-package data;
+package pets.data;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import pets.data.PetJdbcTemplateRepository;
 import pets.models.Pet;
 
 import java.util.List;

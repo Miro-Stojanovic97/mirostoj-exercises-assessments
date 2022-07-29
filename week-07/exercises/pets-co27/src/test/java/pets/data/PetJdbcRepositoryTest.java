@@ -1,4 +1,4 @@
-package data;
+package pets.data;
 
 import org.junit.jupiter.api.Test;
 import pets.data.PetJdbcRepository;

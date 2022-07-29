@@ -1,4 +1,4 @@
-package data;
+package pets.data;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.springframework.context.annotation.Bean;
