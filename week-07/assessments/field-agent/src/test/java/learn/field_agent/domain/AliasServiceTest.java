@@ -16,8 +16,8 @@ import static org.mockito.Mockito.when;
 class AliasServiceTest {
 
     List<Alias> aliases = List.of(
-            new Alias(1, "Fuzzy", null, 1),
-            new Alias(2, "Stevens", null, 2)
+            new Alias(1, "Bigg", null, 1),
+            new Alias(2, "Super", null, 2)
     );
 
     @Autowired
@@ -43,7 +43,7 @@ class AliasServiceTest {
         assertEquals(ResultType.INVALID, actual.getType());
 
         alias = makeAlias();
-        alias.setName("Fuzzy");
+        alias.setName("Bigg");
         alias.setPersona(null);
 
         actual = service.add(alias);
@@ -91,7 +91,7 @@ class AliasServiceTest {
 
     private Alias makeAlias() {
         Alias alias = new Alias();
-        alias.setName("Fuzzy");
+        alias.setName("Bigg");
         alias.setPersona("Persona");
         alias.setAgentId(1);
         return alias;
