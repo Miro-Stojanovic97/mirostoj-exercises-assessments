@@ -17,6 +17,13 @@ Generically:
 // If any property is missing, omit it. If a missing property creates an empty line, omit the line.
 // Hint: object destructing is useful, but not required, here.
 
+//using object destructuring to define the function paramters
+//using default values " " to avoid the undefined values for missing values
+function printBusinessCard({firstName = " ", lastName = " ", jobTitle = " ", pithyPhrase = " "}) {
+  printCard = firstName + " " + lastName + "\n" + jobTitle + "\n" + pithyPhrase + "\n";
+  printCardFinal = 
+  console.log(printCard);
+}
 
 printBusinessCard({
     jobTitle: "Architect",

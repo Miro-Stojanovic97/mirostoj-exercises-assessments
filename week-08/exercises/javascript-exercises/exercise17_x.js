@@ -12,6 +12,16 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function mergeAndRemoveDuplicates(a, b) {
+    //here i use spread syntax. ...name. It is similar to rest parameter syntax. 
+let fullSet = [...a, ...b];
+    //filter by index and index of values. If they don't match, it's a duplicate.
+let uniqueFullSet = fullSet.filter((i, index) => {
+    return fullSet.indexOf(i) === index;
+});
+return uniqueFullSet; //only return values where index and index of match.
+}
+
 assert.deepStrictEqual(mergeAndRemoveDuplicates([1, 2], [2, 3]), [1, 2, 3]);
 assert.deepStrictEqual(mergeAndRemoveDuplicates([1, 1, 2], [2, 2, 3]), [1, 2, 3]);
 assert.deepStrictEqual(mergeAndRemoveDuplicates(["one", 2, true], [true, false, "two"]), ["one", 2, true, false, "two"]);

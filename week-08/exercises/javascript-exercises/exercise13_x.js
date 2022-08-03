@@ -11,6 +11,12 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+// Rest parameters is the last parameter(s), defined by ...name syntax
+function getTheRest(a, b, ...c) {
+    return c;
+}
+
+
 assert.deepStrictEqual(getTheRest(1, 2, 3, 4), [3, 4]);
 assert.deepStrictEqual(getTheRest("a", "b", "c", "d", "e"), ["c", "d", "e"]);
 assert.deepStrictEqual(getTheRest(true, false), []);
