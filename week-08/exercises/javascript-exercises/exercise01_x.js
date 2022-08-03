@@ -8,8 +8,8 @@
 // - If none of the managers ask, print "Nothing to do..."
 
 const managerAAsked = true;
-const managerBAsked = true;
-const managerCAsked = true;
+const managerBAsked = false;
+const managerCAsked = false;
 
 // 1. Add decisions statements to cover all scenarios.
 if (managerAAsked && managerBAsked && managerCAsked) {
