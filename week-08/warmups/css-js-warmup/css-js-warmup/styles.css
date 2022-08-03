@@ -1,0 +1,8 @@
+#button1 {
+    background-color: green;
+    color: white;
+}
+
+#button1:hover {
+    background-color: blue;
+}
