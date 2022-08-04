@@ -4,7 +4,7 @@ GET {{url}} HTTP/1.1
 
 ###
 
-GET {{url}}/2 HTTP/1.1
+GET {{url}}/1 HTTP/1.1
 
 ###
 
@@ -17,10 +17,9 @@ Content-Type: application/json
     "middleName": "C",
     "lastName": "O'Lynn",
     "dob": "1956-11-09",
-    "heightInInches": 41,
-    "agencies": []
+    "heightInInches": 41
 }
 
 ###
 
-DELETE {{url}}/6 HTTP/1.1
+DELETE {{url}}/8 HTTP/1.1

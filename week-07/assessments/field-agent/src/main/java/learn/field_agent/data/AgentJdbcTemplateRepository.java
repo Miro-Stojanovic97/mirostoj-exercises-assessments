@@ -2,6 +2,7 @@ package learn.field_agent.data;
 
 import learn.field_agent.data.mappers.AgentAgencyMapper;
 import learn.field_agent.data.mappers.AgentMapper;
+import learn.field_agent.data.mappers.AliasMapper;
 import learn.field_agent.models.Agent;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -43,10 +44,12 @@ public class AgentJdbcTemplateRepository implements AgentRepository {
 
         if (agent != null) {
             addAgencies(agent);
+            addAliases(agent);
         }
 
         return agent;
     }
+
 
     @Override
     public Agent add(Agent agent) {
@@ -100,6 +103,7 @@ public class AgentJdbcTemplateRepository implements AgentRepository {
         return jdbcTemplate.update("delete from agent where agent_id = ?;", agentId) > 0;
     }
 
+    //add agencies when individual agents are called
     private void addAgencies(Agent agent) {
 
         final String sql = "select aa.agency_id, aa.agent_id, aa.identifier, aa.activation_date, aa.is_active, "
@@ -110,7 +114,18 @@ public class AgentJdbcTemplateRepository implements AgentRepository {
                 + "inner join security_clearance sc on aa.security_clearance_id = sc.security_clearance_id "
                 + "where aa.agent_id = ?;";
 
+        // "var" is syntatic sugar-
         var agentAgencies = jdbcTemplate.query(sql, new AgentAgencyMapper(), agent.getAgentId());
         agent.setAgencies(agentAgencies);
     }
+
+    //add aliases when individual agents are called
+    private void addAliases(Agent agent) {
+        //parameterized query. Dynamically setting the agent id in the query.
+        final String sql = "select alias_id, `name`, persona, agent_id from alias where agent_id = ?;";
+
+        var aliases = jdbcTemplate.query(sql, new AliasMapper(), agent.getAgentId());
+        agent.setAliases(aliases);
+    }
+
 }

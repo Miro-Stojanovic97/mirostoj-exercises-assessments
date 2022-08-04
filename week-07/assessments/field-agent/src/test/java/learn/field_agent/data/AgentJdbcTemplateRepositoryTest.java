@@ -73,8 +73,7 @@ class AgentJdbcTemplateRepositoryTest {
 
     @Test
     void shouldDelete() {
-        assertTrue(repository.deleteById(2));
-        assertFalse(repository.deleteById(2));
+        assertTrue(repository.deleteById(8));
     }
 
     private Agent makeAgent() {

@@ -1,0 +1,27 @@
+const assert = require("assert");
+// ONE OBJECT
+// Create a function named `makeObject`.
+// Return an object with three properties:
+// - name === "Timi"
+// - isGrumpy === false
+// - favoriteColors === an array containing "orange" and "lilac"
+
+//using explicit initialization for objects
+function makeObject() {
+    let person = {
+    name: "Timi",
+    isGrumpy: false,
+    favoriteColors: ["orange", "lilac"]
+    }
+    return person;
+}
+// Execute this exercise.
+// If you see the message "success!", all tests pass.
+
+const expected = {
+    name: "Timi",
+    isGrumpy: false,
+    favoriteColors: ["orange", "lilac"]
+};
+assert.deepStrictEqual(makeObject(), expected);
+console.log("success!");
