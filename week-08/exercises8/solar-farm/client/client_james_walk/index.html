@@ -9,9 +9,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
 </head>
-
 <body>
-    <h1>Solar Farm</h1 
+    <h1>Solar Farm</h1> 
+
+    <div id="errors"></div>
+
+    <form onsubmit="handleSubmit(event)">
+        <div>
+            <label for="section">Section:</label>
+            <input id="section" name="section" type="text"/>
+        </div>
+        <div>
+            <label for="row">Row:</label>
+            <input id="row" name="row" type="number"/>
+        </div>
+        <div>
+            <label for="column">Column:</label>
+            <input id="column" name="column" type="number"/>
+        </div>
+        <div>
+            <label for="yearInstalled">Year Installed:</label>
+            <input id="yearInstalled" name="yearInstalled" type="number"/>
+        </div>
+        <div>
+            <label for="material">Material:</label>
+            <select id="material" name="material">
+                <option>POLY_SI</option>
+                <option>MONO_SI</option>
+                <option>A_SI</option>
+                <option>CD_TE</option>
+                <option>CIGS</option>
+            </select>
+        </div>
+        <div>
+            <label for="tracking">Tracking?:</label>
+            <input id="tracking" name="tracking" type="checkbox"/>
+        </div>
+        <div>
+            <button type="submit">Add Solar Panel</button>
+        </div>
+    </form>
+
     <table>
         <thead>
         <tr>
