@@ -1,7 +1,7 @@
 # Web Field Agent Assessment
 ## Tasks
 _TODO_ Add time estimates to each of the top-level tasks
-* [ ] Continue working in the repo from last week's Field Agent API repository (#.# hours)
+* [x] Continue working in the repo from last week's Field Agent API repository (#.# hours)
     * [ ] Add a README in the `client` folder with the contents from this file
 * [ ] Review the requirements (#.# hours)
 * [ ] Identify any research that I need to do (#.# hours)
