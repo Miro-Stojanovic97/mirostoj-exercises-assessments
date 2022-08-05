@@ -1,0 +1,94 @@
+#button1 {
+  background-color: green;
+  color: white;
+  margin: 5px;
+}
+
+#button2 {
+  background-color: rgb(4, 0, 255);
+  color: white;
+  margin: 5px;
+}
+
+#button3 {
+  background-color: rgb(238, 255, 0);
+  color: rgb(0, 0, 0);
+  margin: 5px;
+}
+
+.material-symbols-outlined {
+  color: rgb(129, 13, 238);
+  margin: 5px;
+}
+
+#button1:hover {
+  background-color: blue;
+}
+
+#button3:hover {
+  background-color: red;
+  font: bold 16px arial;
+}
+
+.material-symbols-outlined:hover {
+  color: red;
+  transition: 0.9s;
+  transform: rotateX(720deg);
+}
+
+#button3:hover {
+  color: red;
+  transition: 0.9s;
+  transform: rotateY(180deg);
+}
+
+#box {
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: #ffa600;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+#box:hover {
+  background-color: #00d9ff;
+  width: 200px;
+  height: 200px;
+  transform: rotate(180deg);
+}
+body {
+  padding: 10px;
+  text-align: center;
+}
+
+h2 {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.ball {
+  border-radius: 50px;
+  width: 75px;
+  height: 75px;
+  background: #c00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 2s;
+}
