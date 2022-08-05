@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/solarpanel")
-@CrossOrigin
+@CrossOrigin //allows anyone to make requests to our api.
 public class SolarPanelController {
     private final SolarPanelService service;
 
