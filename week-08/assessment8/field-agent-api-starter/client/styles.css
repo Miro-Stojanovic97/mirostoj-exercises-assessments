@@ -1,0 +1,21 @@
+#field-agent-cards label {
+    font-weight: bold;
+}
+
+#field-agent-cards .height-dob-row {
+    border-top: 1px solid grey;
+}
+
+#field-agent-cards .height-col {
+    border-right: 1px solid grey;
+}
+
+#field-agent-cards .agent-buttons {
+    border-top: 1px solid grey;
+    padding-top: 12px;
+}
+
+
+#agent-form {
+    display: none;
+}
