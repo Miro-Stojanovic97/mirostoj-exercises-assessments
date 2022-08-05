@@ -1,0 +1,68 @@
+/* Palette */
+/* 
+    --international-orange-engineering: #b80000ff;
+    --selective-yellow: #ffba08ff;
+    --carolina-blue: #629fd0ff;
+    --prussian-blue: #032b43ff;
+    --pine-green: #136f63ff; 
+*/
+
+/* Fonts */
+/* 
+    font-family: 'Arvo', serif;
+    font-family: 'Fredoka One', cursive; 
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka One', cursive; 
+}
+
+.bg-warning {
+    background-color: #ffba08ff!important;
+}
+
+.display-1, 
+.display-2, 
+.display-3, 
+.display-4, 
+.display-5, 
+.display-6 {
+    font-family: 'Pokemon Solid';
+}
+
+nav .row {
+    width: 100%;
+}
+
+nav .navbar-brand {
+    font-size: 32px;
+    font-family: 'Pokemon Solid';
+    padding-top: 0;
+    color: #b80000ff;
+}
+
+nav .navbar-brand:hover {
+    color: #629fd0ff;
+}
+
+nav #linksSection ul {
+    float: right;
+}
+
+main#welcome {
+    background-color: rgb(255, 230, 166);
+    text-align: center;
+}
+
+main#welcome .display-1 {
+    color: #629fd0ff;
+}
+
+.pokemon-container {
+    border: 1px solid black;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    display: inline-block;
+    width: 300px;
+}
