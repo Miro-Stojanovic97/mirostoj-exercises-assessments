@@ -15,6 +15,27 @@
     padding-top: 12px;
 }
 
+#delete-confirm  {
+    display: none;
+    border: 3px solid black;
+    padding: 12px;
+    text-align: center;
+    margin: auto;
+    width: 45%;
+}
+
+#delete-confirm button {
+    border: 1px solid black;
+}
+
+#delete-confirm  label {
+    border-bottom: 3px solid black;
+    padding-bottom: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    font-size: large;
+}
 
 #agent-form {
     display: none;

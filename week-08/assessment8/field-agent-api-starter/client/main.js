@@ -12,6 +12,10 @@ let tempAgentId = null;
 const fieldAgentCardContainer = document.getElementById('field-agent-cards');
 const addAgentButton = document.getElementById('add-agent');
 const agentForm = document.getElementById('agent-form');
+const deleteForm = document.getElementById('delete-confirm');
+const deleteYes = document.getElementById('yes');
+const deleteNo = document.getElementById('no');
+
 const firstNameInput = document.getElementById('first-name');
 const middleNameInput = document.getElementById('middle-name');
 const lastNameInput = document.getElementById('last-name');
@@ -51,7 +55,9 @@ const inputOnChangeHandler = (field) => {
     }
 }
 
-const addAgentButtonClickHandler = () => {
+const addAgentButtonClickHandler = (event) => {
+    event.preventDefault();
+    
     tempFirstName = "";
     tempMiddleName = "";
     tempLastName = "";
@@ -66,12 +72,19 @@ const addAgentButtonClickHandler = () => {
     dobInput.value = "";
 
     agentForm.style.display = "block";
-    // ... Your turn!
+    
+    let currentFieldAgent = null;
+
+    tempFirstName = firstNameInput.value;
+    tempMiddleName = middleNameInput.value;
+    tempLastName = lastNameInput.value;
+    tempHeight = heightInput.value;
+    tempDob = dobInput.value;
 }
 
 const editButtonClickHandler = (event) => {
     const agentIdArray = event.target.id.split("-");
-    tempAgentId = agentIdArray[1];
+    tempAgentId = agentIdArray[1]; //creates agent id associated with button click id
     agentForm.style.display = "block";
 
     const currentFieldAgent = fieldAgents.find(agent => agent.agentId == tempAgentId);
@@ -87,6 +100,44 @@ const editButtonClickHandler = (event) => {
     tempLastName = currentFieldAgent.lastName;
     tempHeight = currentFieldAgent.heightInInches;
     tempDob = currentFieldAgent.dob;
+}
+
+const deleteButtonClickHandler = (event) => {
+    event.preventDefault();
+    
+    const agentIdArray = event.target.id.split("-");
+    tempAgentId = agentIdArray[1]; //creates agent id associated with button click id
+    deleteForm.style.display = "block";
+    
+}
+
+const deleteYesConfirmHandler = (event) => {
+    event.preventDefault();
+
+    let deleteAgentObj = {};
+    deleteAgentObj.agentId = tempAgentId;
+    deleteAgentObj.firstName = tempFirstName;
+    deleteAgentObj.middleName = tempMiddleName;
+    deleteAgentObj.lastName = tempLastName;
+    deleteAgentObj.heightInInches = tempHeight;
+    deleteAgentObj.dob = tempDob;
+
+    fetch(url + tempAgentId, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(deleteAgentObj)
+    })
+    .then(response => console.log(response.status))
+    .then(() => window.location.reload())
+    .catch(error => console.error(error));
+}
+
+const deleteNoConfirmHandler = (event) => {
+    event.preventDefault();
+
+    deleteForm.style.display = "none";
 }
 
 const formSubmitHandler = (event) => {
@@ -112,15 +163,26 @@ const formSubmitHandler = (event) => {
         .then(() => window.location.reload())
         .catch(error => console.error(error));
     } else {
-        // POST Fetch here...
+        // POST Fetch
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(newAgentObj)
+        })
+        .then(response => console.log(response.status))
+        .then(() => window.location.reload())
+        .catch(error => console.error(error));
     }
 }
 
+//creating agent cards
 const fieldAgentCardFactory = (fieldAgentArray) => {
     fieldAgentArray.forEach(fieldAgentObj => {
 
         const cardCol = document.createElement('div');
-        cardCol.setAttribute('class', 'col-3 pb-3 pe-3')
+        cardCol.setAttribute('class', 'col-3 pb-2 pe-1')
 
         const card = document.createElement('div');
         card.setAttribute('class', 'card');
@@ -135,7 +197,7 @@ const fieldAgentCardFactory = (fieldAgentArray) => {
         nameCol.setAttribute('class', 'col');
 
         const nameHeading = document.createElement('h3');
-        nameHeading.innerText = fieldAgentObj.firstName + " " + fieldAgentObj.middleName + " " + fieldAgentObj.lastName;
+        nameHeading.innerText = fieldAgentObj.firstName + " " + fieldAgentObj.middleName + ". " + fieldAgentObj.lastName;
         
         nameCol.appendChild(nameHeading);
         nameRow.appendChild(nameCol);
@@ -152,9 +214,9 @@ const fieldAgentCardFactory = (fieldAgentArray) => {
         const heightParagraph = document.createElement('div');
 
         if(fieldAgentObj.heightInInches === null) {
-            heightParagraph.innerHTML = "<label>Height (\"):</label><br /> <p>Unknown</p>";
+            heightParagraph.innerHTML = `<label>Height:</label><br /> <p>Unknown"</p>`;
         } else {
-            heightParagraph.innerHTML = `<label>Height ("):</label><br /> <p>${fieldAgentObj.heightInInches}</p>`
+            heightParagraph.innerHTML = `<label>Height:</label><br /> <p>${fieldAgentObj.heightInInches}"</p>`
         }
 
         const dobParagraph = document.createElement('div');
@@ -178,15 +240,16 @@ const fieldAgentCardFactory = (fieldAgentArray) => {
         buttonSection.setAttribute('class', 'agent-buttons');
 
         const editButton = document.createElement('button');
-        editButton.setAttribute('class', 'btn btn-info btn-sm me-2');
+        editButton.setAttribute('class', 'btn btn-info btn-sm me-1');
         editButton.innerText = "Edit";
-        editButton.id = "edit-" + fieldAgentObj.agentId;
-        editButton.onclick = editButtonClickHandler;
+        editButton.id = "edit-" + fieldAgentObj.agentId; //buttons have ID of edit-fieldagentId
+        editButton.onclick = editButtonClickHandler; 
 
         const deleteButton = document.createElement('button');
         deleteButton.setAttribute('class', 'btn btn-danger btn-sm');
         deleteButton.innerText = "Delete";
         deleteButton.id = "delete-" + fieldAgentObj.agentId;
+        deleteButton.onclick = deleteButtonClickHandler; 
 
         buttonSection.appendChild(editButton);
         buttonSection.append(deleteButton);
@@ -215,7 +278,13 @@ dobInput.onchange = () => inputOnChangeHandler("dob");
 
 addAgentButton.onclick = addAgentButtonClickHandler;
 
+deleteYes.onclick = deleteYesConfirmHandler;
+deleteNo.onclick = deleteNoConfirmHandler;
 agentForm.onsubmit = formSubmitHandler;
+
+
+
+//deleteButton.onclick = deleteSubmitHandler;
 
 
 

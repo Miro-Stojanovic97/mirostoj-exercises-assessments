@@ -20,13 +20,13 @@
         <![endif]-->
 
         <div class="container">
-            <h1>Field Agent API Web</h1>
+            <h1>Field Agents Web API</h1>
             <div class="row" id="field-agent-cards"></div>
 
-            <button class="btn btn-primary" id="add-agent">Add an Agent</button>
+            <button class="btn btn-primary" id="add-agent">Add Agent</button>
 
             <form class="mt-5" id="agent-form">
-                <h3>Edit Agent</h3>
+                <h3>Agent Description:</h3>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="first-name" class="form-label">First Name:</label>
@@ -52,6 +52,20 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <form class="mb-3" id="delete-confirm">
+                <div class="row">
+                    <label for="first-name" class="form-label">Confirm: Delete agent?</label>
+                </div>
+                <div class= "row">
+                    <div class="col" id="yes">
+                        <button type="submit" class="btn btn-danger">YES</button>
+                    </div>
+                    <div class="col" id="no">
+                        <button type="submit" class="btn btn-info">NO</button>
+                    </div>
+                </div>
+
             </form>
         </div>
         <!-- JavaScript Bundle with Popper -->
