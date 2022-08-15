@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 ## Goals
-Start a React front-end for the Field Agent HTTP back-end data service from Module 7.
+Start a React front-end for the Field Agent project.
 
 ## High-Level Requirements
 Implement a full CRUD UI for agents.
@@ -11,30 +11,31 @@ Implement a full CRUD UI for agents.
 * Add an agent.
 * Update an agent.
 * Delete an agent.
+* Implement Client-Side Routing
+* Display Not Found if route doesn't match
+* Create React components 
 
 ## Technical Requirements
 * Use `create-react-app`
 * Use `fetch` for async HTTP
 * The Field Agent HTTP Service or Database should not be modified (unless there is a confirmed bug/change that needs to be made.)
 * Use a CSS framework.
+* Use Routing for client-side routing
+* Use useHistory and useParams hooks
 
 <hr>
 
 ## Plan
-### Primary Tasks ( Σ = 7.00 hrs )
-1. Create Agent, Agents, and AddAgent react components (1.0 hrs).
-    * Agent component contains a single agent.
-    * Agents component contains display for list of agents.
-    * AddAgent component contains form fields for adding a new agent.
+### Primary Tasks ( Σ = 8.00 hrs )
+1. Create Agent, Agents, and Form react components (1.0 hrs).
 
 2. Implement `fetch` http requests in react components (3.00 hrs).
 
-3. Layout and Style the UI using CSS (1.50 hrs).
-    * Single page table of agents. 
-    * Agent is mapped to each row with button options for editing/deleting. 
-    * Bottom of table has button option to add agent.
+3. Implement Client-Side Routing (2-hr).
 
-4. Test/Debug application (1.50 hrs).
+4. Layout and Style the UI (1 hrs).
+
+5. Test/Debug application (1 hrs).
 
 ---------------------------------------------
 
