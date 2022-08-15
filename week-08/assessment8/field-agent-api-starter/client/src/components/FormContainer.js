@@ -31,7 +31,7 @@ function FormContainer({ editing, updateAgent, setEditing, currentAgent, setCurr
   return (
     <>
       <h2>{formTitle}</h2>
-      <Form editing={editing} handleSubmit={handleSubmit} setCurrentAgent={setCurrentAgent} resetForm={resetForm} agent={currentAgent} addAgent={addAgent} handleSubmit={handleSubmit} setErrors={setErrors} />
+      <Form editing={editing} handleSubmit={handleSubmit} setCurrentAgent={setCurrentAgent} resetForm={resetForm} agent={currentAgent} addAgent={addAgent} setErrors={setErrors} />
     </>
   )
 }

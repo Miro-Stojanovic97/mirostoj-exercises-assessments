@@ -5,7 +5,7 @@ function AgentTable({ agents, editAgent, deleteAgent }) {
   return (
     <>
       <hr></hr>
-      <h2>All Agents</h2>
+      <h2>View Agents</h2>
       <table className="table table-striped table-light table-hover">
         <thead>
           <tr>

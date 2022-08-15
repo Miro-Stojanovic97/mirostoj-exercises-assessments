@@ -20,7 +20,7 @@ function Form({ editing, resetForm, agent, setCurrentAgent, addAgent, handleSubm
             value={agent.firstName} required />
         </div>
         <div className="col-sm">
-          <label htmlFor="middleName" className="form-label">Middle Name:</label>
+          <label htmlFor="middleName" className="form-label">Middle Initial:</label>
           <input id="middleName" name="middleName" type="text" className="form-control"
             onChange={onChangeHandler}
             value={agent.middleName} />
@@ -40,7 +40,7 @@ function Form({ editing, resetForm, agent, setCurrentAgent, addAgent, handleSubm
             value={agent.dob} required />
         </div>
         <div className="col-sm">
-          <label htmlFor="heightInInches" className="form-label">Height in Inches:</label>
+          <label htmlFor="heightInInches" className="form-label">Height (Inches):</label>
           <input id="heightInInches" name="heightInInches" type="number" className="form-control"
             onChange={onChangeHandler}
             value={agent.heightInInches}
