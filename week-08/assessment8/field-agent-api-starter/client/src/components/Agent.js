@@ -1,3 +1,5 @@
+import {useHistory} from 'react-router-dom';
+
 function Agent({editAgent, deleteAgent, agent}) {
 
     const handleDelete = (agent) => {
@@ -9,8 +11,11 @@ function Agent({editAgent, deleteAgent, agent}) {
         `
         if(window.confirm(windowPrompt)) {
             deleteAgent(agent.agentId)
+            navigate("/form");
         }
     }
+
+    const navigate = useHistory();
 
     return (
         <tr>

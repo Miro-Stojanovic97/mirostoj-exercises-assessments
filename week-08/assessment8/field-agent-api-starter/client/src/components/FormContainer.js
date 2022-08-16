@@ -1,7 +1,10 @@
 import { useState, useCallback } from 'react';
 import Form from './Form';
+import {useHistory} from "react-router-dom";
 
 function FormContainer({ editing, updateAgent, setEditing, currentAgent, setCurrentAgent, addAgent, setErrors }) {
+
+  const navigate = useHistory();
 
   const DEFAULT_AGENT = {
     firstName: '',
