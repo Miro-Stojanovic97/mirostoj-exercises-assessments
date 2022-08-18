@@ -24,9 +24,9 @@ function Nav() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/agents/add">New Agent</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/agents/edit/:editAgentId">Edit Agent</Link>
-                        </li>
+                        {/* <li className="nav-item">
+                            <Link className="nav-link" to="/agents/edit/:agentId">Edit Agent</Link>
+                        </li> */}
                     </ul>
                 </div>
             </div>

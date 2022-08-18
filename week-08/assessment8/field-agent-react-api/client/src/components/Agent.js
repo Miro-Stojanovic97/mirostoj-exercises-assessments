@@ -1,5 +1,6 @@
-function Agent({editAgent, deleteAgent, agent}) {
+import { Link, useParams } from "react-router-dom";
 
+function Agent({editAgent, deleteAgent, agent, useParams}) {
     const handleDelete = (agent) => {
         const windowPrompt =`
         Are you sure you want to delete 
@@ -12,6 +13,8 @@ function Agent({editAgent, deleteAgent, agent}) {
         }
     }
 
+    //let {agentId} = useParams();
+
     return (
         <tr>
             <td>{agent.agentId}</td>
@@ -21,8 +24,9 @@ function Agent({editAgent, deleteAgent, agent}) {
             <td>{agent.dob}</td>
             <td>{agent.heightInInches}</td>
             <td>
-                <button className="btn btn-primary btn-sm" onClick={() => editAgent(agent)}>Edit</button>
-                <button className="btn btn-danger btn-sm ms-3" onClick={() => handleDelete(agent)}>Delete</button>
+                {/* <button className="btn btn-primary btn-sm" onClick={() => editAgent(agent)}>Edit</button> */}
+                <Link to="/agents/edit/${agent.agentId}" className="btn btn-primary btn-sm">Edit</Link>
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(agent)}>Delete</button>
             </td>
         </tr>
     )

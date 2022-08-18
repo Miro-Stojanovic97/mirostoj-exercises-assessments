@@ -3,7 +3,7 @@ import AgentTable from './AgentTable';
 import FormContainer from './FormContainer';
 import Errors from './Errors';
 
-function Agents() {
+function Agents(agent, handleDelete) {
 
   const DEFAULT_AGENT = {
     firstName: '',
@@ -132,7 +132,7 @@ function Agents() {
     <>
       <Errors errors={errors} />
       {/* <FormContainer updateAgent={updateAgent} setEditing={setEditing} editing={editing} currentAgent={currentAgent} setCurrentAgent={setCurrentAgent} addAgent={addAgent} setErrors={setErrors} /> */}
-      <AgentTable agents={agents} editAgent={editAgent} deleteAgent={deleteAgent} />
+      <AgentTable agents={agents} deleteAgent={deleteAgent} />
     </>
   )
 }

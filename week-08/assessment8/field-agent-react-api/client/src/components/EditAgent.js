@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import AgentTable from './AgentTable';
 import FormContainer from './FormContainer';
 import Errors from './Errors';
-import {useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 
 
 function EditAgent() {
 
-    let {agentId} = useParams();
-  //  setCurrentAgent(agentId);
+  let {agentId} = useParams();
 
   const DEFAULT_AGENT = {
     firstName: '',
@@ -20,7 +19,7 @@ function EditAgent() {
 
   const [agents, setAgents] = useState([]);
   const [currentAgent, setCurrentAgent] = DEFAULT_AGENT;
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -60,26 +59,24 @@ function EditAgent() {
       body: JSON.stringify(updateAgent)
     }
 
-    const response = await fetch(`http://localhost:8080/api/agent/${agentId}`, init);
+    const response = await fetch(`http://localhost:8080/api/agent/${updateAgent.agentId}`, init);
     console.log(response.status)
     if (response.status === 204) {
       const newAgents = [...agents]
-      const agentIndexToUpdate = agents.findIndex(agent => agent.agentId === agentId)
+      const agentIndexToUpdate = agents.findIndex(agent => agent.agentId === updateAgent.agentId)
       newAgents[agentIndexToUpdate] = updateAgent;
       setAgents(newAgents);
-      // setCurrentAgent(DEFAULT_AGENT);
-      // setEditing(false);
+      setCurrentAgent(DEFAULT_AGENT);
+      setEditing(true);
 
     } else if (response.status === 400) {
       const data = await response.json();
       setErrors(data);
 
     } else if (response.status === 404) {
-      // todo: response
       return Promise.reject("Response is 404.")
 
     } else {
-      // todo: response
       return Promise.reject("Something went wrong.")
     }
   }
