@@ -1,0 +1,32 @@
+.jumbotron {
+  background-color: white;
+}
+
+body {
+  background-color: #dad5ed;
+  margin: 2% 15%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navbar-toggler {
+  background-color:  #dad5ed;
+  border-color: black;
+}
+
+.display-1 {
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* form {
+  display: none;
+} */
