@@ -1,0 +1,125 @@
+/* Palette
+
+--key-lime: #edf67d;
+--orchid-crayola: #f896d8;
+--heliotrope: #ca7df9;
+--majorelle-blue: #724cf9;
+--dark-slate-blue: #564592; 
+*/
+
+.mode-toggle {
+  border: none;
+  background: none;
+}
+
+.form-error-message {
+  font-style: italic;
+}
+
+
+
+/* Dark Mode */
+
+.dark-mode {
+  background-color: #564592;
+  color: white;
+}
+
+.dark-mode .table {
+  --bs-table-color: #fff;
+  --bs-table-bg: #392a70;
+  --bs-table-border-color: #373b3e;
+  --bs-table-striped-bg: #2c3034;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373b3e;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #323539;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.dark-mode .form-error-message {
+  color: #edf67d;
+}
+
+
+/* Light Mode */
+
+.light-mode {
+  background-color: #dad5ed;
+  color: black;
+}
+
+.light-mode .table {
+    --bs-table-color: #000;
+    --bs-table-bg: #ece7ff;
+    --bs-table-border-color: #dfe0e1;
+    --bs-table-striped-bg: #ecedee;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dfe0e1;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e5e6e7;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+
+.light-mode .form-error-message {
+  color: #ca7df9;
+}
+
+
+/* Bootstrap Overrides */
+
+.btn-primary { 
+  background-color: #724cf9;
+  border-color: #724cf9;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus { 
+  background-color: #492ea8;
+  border-color: #492ea8;
+}
+
+.btn-primary:focus {
+  outline: 3px solid #b19cfd !important;
+}
+
+.btn-info { 
+  background-color: #f896d8;
+  border-color: #f896d8;
+}
+
+.btn-info:hover, .btn-info:active, .btn-info:focus { 
+  background-color: #d177b3;
+  border-color: #d177b3;
+  color: white;
+}
+
+.btn-info:focus {
+  outline: 3px solid #feb7e7 !important;
+}
+
+.btn-danger { 
+  background-color: #ca7df9;
+  border-color: #ca7df9;
+  color: black;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus { 
+  background-color: #b65fed;
+  border-color: #b65fed;
+}
+
+.btn-danger:focus {
+  outline: 3px solid #d89efc !important;
+}
+
+.alert {
+  display: none;
+}
+
+.alert.show {
+  display: block;
+}
